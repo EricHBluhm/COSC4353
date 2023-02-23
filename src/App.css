@@ -1,0 +1,117 @@
+.accReg {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: teal;
+}
+
+.accReg form{
+  background-color: white;
+  padding: 0px 60px;
+  border-radius: 10px;
+}
+
+.accReg h1{
+  color: rgb(92, 4, 92);
+  text-align: center;
+}
+
+.accReg button{
+  width: 100%;
+  height:50px;
+  padding:10px;
+  border:none;
+  background-color: purple;
+  color:white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.Login {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: teal;
+}
+
+.Login form{
+  background-color: white;
+  padding: 0px 60px;
+  border-radius: 10px;
+}
+
+.Login h1{
+  color: rgb(92, 4, 92);
+  text-align: center;
+}
+
+.Login button{
+  width: 100%;
+  height:50px;
+  padding:10px;
+  border:none;
+  background-color: purple;
+  color:white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.Login span {
+  font-size: 12px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.Register {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: teal;
+}
+
+.Register form{
+  background-color: white;
+  padding: 0px 60px;
+  border-radius: 10px;
+}
+
+.Register h1{
+  color: rgb(92, 4, 92);
+  text-align: center;
+}
+
+.Register button{
+  width: 100%;
+  height:50px;
+  padding:10px;
+  border:none;
+  background-color: purple;
+  color:white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.Register span {
+  font-size: 12px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
