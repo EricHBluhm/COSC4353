@@ -12,7 +12,6 @@ const AccRegistration = () => {
         address1:"",
         address2:"",
         city:"",
-        state:"",
         zipcode:"",
     })
 
@@ -26,7 +25,7 @@ const AccRegistration = () => {
             placeholder:"Full Name",
             errorMessage:"Invalid name.",
             label:"Full Name",
-            pattern: "^[a-zA-Z]{2,50}$",
+            pattern: "^[a-zA-Z_][a-zA-Z_ ]*[a-zA-Z_]{2,50}$",
             required: true,
         },
         {
@@ -34,9 +33,9 @@ const AccRegistration = () => {
             name:"address1",
             type:"text",
             placeholder:"Address 1",
-            errorMessage:"",
+            errorMessage:"Enter Valid Address",
             label:"Address 1",
-            pattern: "^[a-zA-Z0-9]{2,100}$",
+            pattern: "^[a-zA-Z0-9_][a-zA-Z0-9_ ]*[a-zA-Z0-9_]$",
             required: true,
         },
         {
@@ -47,7 +46,7 @@ const AccRegistration = () => {
             errorMessage:"",
             label:"Address 2",
             pattern: "^[a-zA-Z0-9]{2,100}$",
-            required: true,
+            required: false,
         },
         {
             id:4,
