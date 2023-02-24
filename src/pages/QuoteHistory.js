@@ -1,6 +1,6 @@
 import QuoteTable from "./QuoteTable"
 
-export default function App() {
+export default function QuoteHistory() {
   
   return (
     <nav className="main-body"> 
