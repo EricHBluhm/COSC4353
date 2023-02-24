@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-body{
+  background-color: "#EEB902";
+}
+
+.navigation-bar{
+  background: grey;
+  text-align: center;
+  padding: 30px;
+  color: white;
+}
+
+.footer-main{
+  font-family: 'Nanum Gothic', sans-serif;
+  border: dashed #F8F272;
+  color: white;
+  background:#40531B;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
