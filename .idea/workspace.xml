@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3667e15a-bf24-45bd-bcb6-656c92118f61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +32,18 @@
       <option name="presentableId" value="Default" />
       <updated>1677190890607</updated>
     </task>
+    <task id="LOCAL-00001" summary="CHANGES:&#10;1) ADDED GOOGLE FONTS LINKS FOR QUOTE HISTORY PAGE&#10;2) BUTTON TO CREATE NEW FUEL QUOTE ADDED ON QUOTE HISTORY PAGES">
+      <created>1677264515802</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677264515802</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="CHANGES:&#10;1) ADDED GOOGLE FONTS LINKS FOR QUOTE HISTORY PAGE&#10;2) BUTTON TO CREATE NEW FUEL QUOTE ADDED ON QUOTE HISTORY PAGES" />
+    <option name="LAST_COMMIT_MESSAGE" value="CHANGES:&#10;1) ADDED GOOGLE FONTS LINKS FOR QUOTE HISTORY PAGE&#10;2) BUTTON TO CREATE NEW FUEL QUOTE ADDED ON QUOTE HISTORY PAGES" />
   </component>
 </project>
