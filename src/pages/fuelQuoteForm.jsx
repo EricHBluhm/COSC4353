@@ -1,4 +1,4 @@
-import './fuelQuoteForm.css'
+import './App.css'
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -30,11 +30,11 @@ export default function App() {
           })}
         >
           <label>Number of Gallons:</label>
-          <input {...register("gallonsRequested", {required: 'A valid number is required.'})} placeholder="ex.  1,000" />
+          <input {...register("gallonsRequested", {required: 'A valid number is required.'})} type="number" placeholder="ex.  1,000" />
           <p1>{errors.gallonsRequested?.message}</p1>
           
           <label>Delivery Address: </label>
-          <input {...register("address", {required: 'A valid address is required.'})} placeholder="ex.  34 wallaby way"/> 
+          <input {...register("address", {required: 'A valid address is required.'})} minLength="5" placeholder="ex.  34 wallaby way"/> 
           <p1>{errors.address?.message}</p1>
   
           <label>Desired Delivery Date: </label>
