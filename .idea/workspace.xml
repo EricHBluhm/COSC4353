@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3667e15a-bf24-45bd-bcb6-656c92118f61" name="Default Changelist" comment="" />
+    <list default="true" id="3667e15a-bf24-45bd-bcb6-656c92118f61" name="Default Changelist" comment="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;src/pages/App.js&#10;#&#9;src/pages/QuoteTableApp.css&#10;#&#9;src/pages/QuoteTableApp.js&#10;#&#9;src/pages/index.css&#10;#&#9;src/pages/quoteHistory.js&#10;#&#9;src/pages/quoteTable.css">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/QuoteTableApp.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/quoteTable.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/QuoteTableApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/quoteHistory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +15,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="2M9rxUu5Sa58yGFEtr4UvL352Yk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,6 +56,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CHANGES:&#10;1) ADDED GOOGLE FONTS LINKS FOR QUOTE HISTORY PAGE&#10;2) BUTTON TO CREATE NEW FUEL QUOTE ADDED ON QUOTE HISTORY PAGES" />
     <MESSAGE value="CHANGES:&#10;1) ADDED libraries to app of quote history page&#10;2) BUTTON added to return to previous page and style changes on button" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHANGES:&#10;1) ADDED libraries to app of quote history page&#10;2) BUTTON added to return to previous page and style changes on button" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;src/pages/App.js&#10;#&#9;src/pages/QuoteTableApp.css&#10;#&#9;src/pages/QuoteTableApp.js&#10;#&#9;src/pages/index.css&#10;#&#9;src/pages/quoteHistory.js&#10;#&#9;src/pages/quoteTable.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;src/pages/App.js&#10;#&#9;src/pages/QuoteTableApp.css&#10;#&#9;src/pages/QuoteTableApp.js&#10;#&#9;src/pages/index.css&#10;#&#9;src/pages/quoteHistory.js&#10;#&#9;src/pages/quoteTable.css" />
   </component>
 </project>
