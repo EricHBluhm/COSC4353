@@ -4,7 +4,11 @@ export default function App() {
   
   return (
     <nav className="main-body"> 
-      <nav><header className = "navigation-bar"> Navigation control bar goes here</header></nav>
+      <nav>
+        <header className = "navigation-bar">
+            <Button variant="contained" /*onClick={}*/ > New Fuel Quote </Button>
+        </header>
+      </nav>
       <QuoteTable className />
       <footer className = "footer-main"> 
           <center><small>© 2023 All Rights Reserved. University of Houston. Department of Computer Science.</small></center>
