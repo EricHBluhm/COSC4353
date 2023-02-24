@@ -1,4 +1,4 @@
-import './App.css'
+import './fuelQuoteForm.css'
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,7 +8,7 @@ import { z } from "zod";
 
 
 
-export default function App() {
+export default function QuoteForm() {
   const [date, setDate] = useState(new Date());
   const { register, handleSubmit, formState: {errors} } = useForm();
 
