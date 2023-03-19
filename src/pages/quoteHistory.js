@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 
-export default function App() {
+export default function QuoteHistory() {
   
   return (
     <nav className="main-body"> 
