@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import AccRegistration from "./pages/accRegistration";
 import Login from "./pages/Login";
 import Register from "./pages/register";
+import QuoteForm from "./pages/fuelQuoteForm"
+import QuoteHistory from "./pages/quoteHistory"
 
 function App() {
   return (
