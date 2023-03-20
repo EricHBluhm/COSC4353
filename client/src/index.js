@@ -15,3 +15,8 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+//"proxy":"http:localhost:8800/server/" in package.json so
+//dont have to write it out each time for API calls
+//might want to remove when using mongoDB?

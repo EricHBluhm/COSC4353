@@ -46,7 +46,7 @@ const AccRegistration = () => {
             errorMessage:"",
             label:"Address 2",
             pattern: "^[a-zA-Z0-9]{2,100}$",
-            required: false,
+            
         },
         {
             id:4,
@@ -149,7 +149,7 @@ const AccRegistration = () => {
                 <label>State</label>
                     <select name="tates" id="states">
                         {states.map(state=>(
-                            <option value={state[1]} requried>{state[0]}</option>
+                            <option value={state[1]} required>{state[0]}</option>
                         ))}
                     </select> 
                 </div>
