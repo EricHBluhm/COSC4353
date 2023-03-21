@@ -73,7 +73,7 @@ const Register = () => {
         setValues({...values, [e.target.name]: e.target.value})
     }
 
-        console.log(values);
+        //console.log(values);
     return (
         <div className = "Register">
             <form onSubmit={handleSubmit}>

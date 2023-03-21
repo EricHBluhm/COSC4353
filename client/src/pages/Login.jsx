@@ -1,8 +1,9 @@
 import '../App.css';
-import {useState} from "react";
+import {useContext, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import axios from "axios";
+import { AuthContext } from '../context/authContext';
 
 
 const Login = () => {
@@ -12,7 +13,13 @@ const Login = () => {
         password:"",
     })
 
+    const [err,setError] = useState(null);
+
     const navigate = useNavigate()
+
+    const {login} = useContext(AuthContext); //login api moved here
+    const {currentUser} = useContext(AuthContext); //lets us get currentUser info
+    //currentUser.address, etc.
 
     const inputs = [
         {
@@ -41,8 +48,10 @@ const Login = () => {
         e.preventDefault();//prevent refreshing
         try{
             //send info to server
-            const res = await axios.post("/auth/login", values) //post to endpoint, pass in values from form
-            console.log(res.data)
+            //moved to authContext
+                //const res = await axios.post("/auth/login", values) //post to endpoint, pass in values from form
+            await login(values);
+                console.log(res.data)
 
             console.log(res.data.userInfo)
             //if userInfo is false
@@ -76,6 +85,7 @@ const Login = () => {
                     />
                 ))}
                 <button>Submit</button>
+                {err && <p>Account already Exists!</p>}
                 <span>Don't have an account? <Link to="/Register"> Register</Link></span>
             </form>
         </div>
