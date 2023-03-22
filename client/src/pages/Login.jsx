@@ -41,7 +41,7 @@ const Login = () => {
         e.preventDefault();//prevent refreshing
         try{
             //send info to server
-            const res = await axios.post("/auth/login", values) //post to endpoint, pass in values from form
+            const res = await axios.post("auth/login", values) //post to endpoint, pass in values from form
             console.log(res.data)
 
             console.log(res.data.userInfo)

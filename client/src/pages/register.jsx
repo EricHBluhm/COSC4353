@@ -50,11 +50,12 @@ const Register = () => {
         },
     ]
 
+    // // "proxy":"https://localhost:8800/server/"
     const handleSubmit = async (e) => {
         e.preventDefault();//prevent refreshing
         try{
             //send info to server
-            const res = await axios.post("/auth/register", values) //post to endpoint, pass in values from form
+            const res = await axios.post("auth/register", values) //post to endpoint, pass in values from form
             console.log(res.data)
             console.log(res.data.userInfo)
             console.log(`Hello , ${res.data.password}`)

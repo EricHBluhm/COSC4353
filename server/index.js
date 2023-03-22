@@ -1,4 +1,5 @@
 //npm init -y
+<<<<<<< HEAD
 //npm i express, mongoose, bycryptjs, jsonwebtoken
 //package.sjon - "type": "module", under main so we can
     //do imports
@@ -24,3 +25,6 @@ app.listen(8800, ()=>{
 // app.get("/test", (req,res)=>{
 //     //     res.json("It WORKS!")
 //     // })
+=======
+//npm i express
+>>>>>>> parent of 1284315 (Creating auth route/controller)
