@@ -1,14 +1,11 @@
 import '../App.css';
 import "../components/formInput.css";
-import {useState, useContext} from "react";
-import {useNavigate } from "react-router-dom";
+import {useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
-import { AuthContext } from '../context/authContext';
 
 
 const AccRegistration = () => {
-
-    const {currentUser} = useContext(AuthContext);
 
     const [values, setValues] = useState({
         fullName:"",
@@ -16,7 +13,6 @@ const AccRegistration = () => {
         address2:"",
         city:"",
         zipcode:"",
-        email: currentUser.email
     })
 
     const navigate = useNavigate()
@@ -130,9 +126,6 @@ const AccRegistration = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("submitted")
-
-
-        navigate("/QuoteHistory")
     };
 
     const onChange = (e) => {

@@ -39,7 +39,7 @@ export const register = (req,res) =>{
 
 export const login = (req,res) => {
     try{
-        let user = req.body; //values from the login form
+        let user = req.body;
         //check to see if user exists
             //send error if failed
         //check password if correct with hash (have to fix)
@@ -62,13 +62,5 @@ export const login = (req,res) => {
 }
 
 export const userInfo = (req,res) => {
-    try{    
-        let userInfo = req.body;
-        //do validation
-        //push
-
-
-    }catch(err){
-
-    }
+    
 }
