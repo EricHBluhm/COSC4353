@@ -47,15 +47,14 @@ export const login = (req,res) => {
             //send error if failed
 
         //do jwt stuff
-        //const token = jwt.sign({id: user.email}, "jwtkey"); //will be user._id when doing MDB
+        const token = jwt.sign({id: user.email}, "jwtkey"); //will be user._id when doing MDB
         
         delete user.password; 
         
         //res.status(200).json({ token, user }); //send to frontend
-        // res.cookie("access_token", token,{
-        //     httpOnly:true
-        // }).status(200).json(user);
-        res.json(user);
+        res.cookie("access_token", token,{
+            httpOnly:true
+        }).status(200).json(user);
     }catch(err){
         res.status(500).json({ error: err.message })
     }

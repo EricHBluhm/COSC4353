@@ -17,8 +17,8 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    //const {login} = useContext(AuthContext); //login api moved here
-    //const {currentUser} = useContext(AuthContext); //lets us get currentUser info
+    const {login} = useContext(AuthContext); //login api moved here
+    const {currentUser} = useContext(AuthContext); //lets us get currentUser info
     //currentUser.address, etc.
 
     const inputs = [
@@ -48,16 +48,16 @@ const Login = () => {
         e.preventDefault();
         try{
             //Below moved to authContext
-            const res = await axios.post("/auth/login", values) //post to endpoint, pass in values from form
-            //await login(values); //calling login from AuthContext with form values as input, which is a post api call
+                //const res = await axios.post("/auth/login", values) //post to endpoint, pass in values from form
+            await login(values); //calling login from AuthContext with form values as input, which is a post api call
            
-            console.log(res.data)
-            // if (currentUser.userInfo === "false") //if user just registered
-            // {
-            //     navigate("/accReg"); //move to accReg page to fill in rest of info
-            // }
-            // else
-            //     navigate("/QuoteHistory");
+            console.log()
+            if (currentUser.userInfo === "false") //if user just registered
+            {
+                navigate("/accReg"); //move to accReg page to fill in rest of info
+            }
+            else
+                navigate("/QuoteHistory");
 
             //testing:    
                 //console.log(res.data)
