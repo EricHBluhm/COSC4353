@@ -2,7 +2,6 @@ import '../App.css';
 import {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
-import axios from "axios";
 
 
 const Register = () => {
@@ -12,8 +11,6 @@ const Register = () => {
         password:"",
         confirmPassword: "",
     })
-
-    const [err,setError] = useState(null);
 
     const navigate = useNavigate()
 
@@ -50,6 +47,7 @@ const Register = () => {
         },
     ]
 
+<<<<<<< HEAD
     // // "proxy":"https://localhost:8800/server/"
     const handleSubmit = async (e) => {
         e.preventDefault();//prevent refreshing
@@ -67,6 +65,13 @@ const Register = () => {
             //need to send a res.status(409)
             setError(err.response.data)
         }
+=======
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        //send info to auth/backend
+        navigate("/Login")
+        console.log("submitted")
+>>>>>>> parent of 69884ae (Post register route)
     };
 
     const onChange = (e) => {
@@ -74,7 +79,7 @@ const Register = () => {
         setValues({...values, [e.target.name]: e.target.value})
     }
 
-        console.log(values);
+        //console.log(values);
     return (
         <div className = "Register">
             <form onSubmit={handleSubmit}>
@@ -87,7 +92,6 @@ const Register = () => {
                     />
                 ))}
                 <button>Submit</button>
-                {err && <p>Account already Exists!</p>}
                 <span>Already have an account? <Link to="/login">Login</Link></span>
             </form>
         </div>

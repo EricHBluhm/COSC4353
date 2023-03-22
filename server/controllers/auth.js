@@ -14,23 +14,21 @@ let users = [
     }
 ]
 
-//these functions should be async when we implement the DB
-//b/c we have to await the crud operations and those take time
+
 export const register = (req,res) =>{
    try{
     const newUser = req.body;
     //check to see if email already is use
-        //if so return //need to send a res.status(409)
+        //if so return
     //else register:
 
     //hash password
-    //const salt = bcrypt.genSaltSync(10);
-    //newUser.password= bcrypt.hasySync(newUser.password,salt);
-    //newUser.password = hashedPassword;
-    newUser.userInfo = false;
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword= bcrypt.hasySync(req.body.password,salt);
+    newUser.password = hashedPassword;
 
-    users.push({newUser});
-    res.json(newUser); //send recived status code and send a version of new User to front end if needed
+    users.push({newUser, userInfo:false});
+    res.status(201).json(savedUser); //send recived status code and send a version of new User to front end if needed
    }
    catch (err){
         res.status(500).json({ error: err.message })
@@ -38,9 +36,5 @@ export const register = (req,res) =>{
 }
 
 export const login = (req,res) => {
-    
-}
-
-export const userInfo = (req,res) => {
     
 }

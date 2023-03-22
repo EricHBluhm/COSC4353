@@ -2,7 +2,6 @@ import '../App.css';
 import {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
-import axios from "axios";
 
 
 const Login = () => {
@@ -37,6 +36,7 @@ const Login = () => {
     ]
 
 
+<<<<<<< HEAD
     const handleSubmit = async (e) => {
         e.preventDefault();//prevent refreshing
         try{
@@ -55,8 +55,14 @@ const Login = () => {
             //need to send a res.status(409)
             //setError(err.response.data)
         }
+=======
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        //send info to auth/backend
+        navigate("/accReg")
+        console.log("submitted")
+>>>>>>> parent of 69884ae (Post register route)
     };
-   
 
     const onChange = (e) => {
         //spread previous values, and for each target name, update them by using the value (what we are inputing into the form)
