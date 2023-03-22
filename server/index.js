@@ -1,15 +1,13 @@
 //npm init -y
-//npm i express, mongoose, bycryptjs, jsonwebtoken, cookie-parser
+//npm i express, mongoose, bycryptjs, jsonwebtoken
 //package.sjon - "type": "module", under main so we can
     //do imports
 
 import express from "express"
 import authRoutes from "./routes/auth.js"
-import cookieParser from "cookie-parser"
 
 const app = express();
 app.use(express.json());
-app.use(cookieParser());
 
 app.use("/server/auth", authRoutes); //on /server/auth, will use authRoutes
 //so in authRoutes, server/auth/something can be defined in server/auth
