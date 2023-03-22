@@ -47,31 +47,11 @@ const Register = () => {
         },
     ]
 
-<<<<<<< HEAD
-    // // "proxy":"https://localhost:8800/server/"
-    const handleSubmit = async (e) => {
-        e.preventDefault();//prevent refreshing
-        try{
-            //send info to server
-            const res = await axios.post("auth/register", values) //post to endpoint, pass in values from form
-            console.log(res.data)
-            console.log(res.data.userInfo)
-            console.log(`Hello , ${res.data.password}`)
-
-            //navigate("/Login")
-    
-        }
-        catch(err){
-            //need to send a res.status(409)
-            setError(err.response.data)
-        }
-=======
     const handleSubmit = (e) => {
         e.preventDefault();
         //send info to auth/backend
         navigate("/Login")
         console.log("submitted")
->>>>>>> parent of 69884ae (Post register route)
     };
 
     const onChange = (e) => {
