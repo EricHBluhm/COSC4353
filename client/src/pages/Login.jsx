@@ -45,19 +45,23 @@ const Login = () => {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();//prevent refreshing
+        e.preventDefault();
         try{
-            //send info to server
-            //moved to authContext
+            //Below moved to authContext
                 //const res = await axios.post("/auth/login", values) //post to endpoint, pass in values from form
-            await login(values);
-                console.log(res.data)
+            await login(values); //calling login from AuthContext with form values as input, which is a post api call
+           
+            console.log()
+            if (currentUser.userInfo === "false") //if user just registered
+            {
+                navigate("/accReg"); //move to accReg page to fill in rest of info
+            }
+            else
+                navigate("/QuoteHistory");
 
-            console.log(res.data.userInfo)
-            //if userInfo is false
-                //navigate("/accReg")
-            //else
-                //navigate("/Homepage?")
+            //testing:    
+                //console.log(res.data)
+                //console.log(res.data.userInfo)
     
         }
         catch(err){
@@ -85,7 +89,7 @@ const Login = () => {
                     />
                 ))}
                 <button>Submit</button>
-                {err && <p>Account already Exists!</p>}
+                {/* {err && <p>Account already Exists!</p>} */}
                 <span>Don't have an account? <Link to="/Register"> Register</Link></span>
             </form>
         </div>
