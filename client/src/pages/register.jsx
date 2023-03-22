@@ -59,7 +59,7 @@ const Register = () => {
             console.log(res.data.userInfo)
             console.log(`Hello , ${res.data.password}`)
 
-            navigate("/Login")
+            //navigate("/Login")
     
         }
         catch(err){

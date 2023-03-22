@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser"
 
 const app = express();
 app.use(express.json());
-app.use(cookieParser());
+//app.use(cookieParser());
 
 app.use("/server/auth", authRoutes); //on /server/auth, will use authRoutes
 //so in authRoutes, server/auth/something can be defined in server/auth
