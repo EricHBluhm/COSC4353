@@ -2,7 +2,7 @@ import '../App.css';
 import {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
-
+import axios from "axios";
 
 const Login = () => {
 
@@ -36,11 +36,20 @@ const Login = () => {
     ]
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //send info to auth/backend
-        navigate("/accReg")
-        console.log("submitted")
+        try{
+            const res = await axios.post("/auth/login", values);
+            console.log(res.data)
+
+            if(res.data.hasAccInfo === false)
+                navigate("/accReg")
+            else    
+                navigate("/QuoteHistory")
+
+        }catch (err){
+            console.log(err)
+        }
     };
 
     const onChange = (e) => {

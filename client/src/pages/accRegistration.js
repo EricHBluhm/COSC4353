@@ -3,7 +3,7 @@ import "../components/formInput.css";
 import {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
-
+import axios from "axios";
 
 const AccRegistration = () => {
 
@@ -123,9 +123,22 @@ const AccRegistration = () => {
         ['Wyoming', 'WY'],
     ];
 
-    const handleSubmit = (e) => {
+
+    let testing = {
+        hello : "hello",
+        pls: "PlEASE"
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("submitted")
+        try{
+            const res = await axios.post("/auth/accInfo", {values,testing});
+            console.log(res.data)
+            //console.log(res.data.hello)
+            //console.log(res.data.values.zipcode)
+        }catch (err){
+            console.log(err)
+        }
     };
 
     const onChange = (e) => {
