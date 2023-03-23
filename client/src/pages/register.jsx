@@ -2,6 +2,7 @@ import '../App.css';
 import {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
+import axios from "axios";
 
 
 const Register = () => {
@@ -10,6 +11,7 @@ const Register = () => {
         email:"",
         password:"",
         confirmPassword: "",
+        hasAccInfo: false,
     })
 
     const navigate = useNavigate()
@@ -47,11 +49,24 @@ const Register = () => {
         },
     ]
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //send info to auth/backend
-        navigate("/Login")
-        console.log("submitted")
+        try{
+
+
+            const res = await axios.post("/auth/register", values);
+            console.log(res.data.hasAccInfo)
+            //navigate("/Login")
+            console.log("submitted")
+
+
+
+        }catch (err){
+            console.log(err)
+        }
+       
+
+        
     };
 
     const onChange = (e) => {

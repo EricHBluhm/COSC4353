@@ -36,32 +36,11 @@ const Login = () => {
     ]
 
 
-<<<<<<< HEAD
-    const handleSubmit = async (e) => {
-        e.preventDefault();//prevent refreshing
-        try{
-            //send info to server
-            const res = await axios.post("auth/login", values) //post to endpoint, pass in values from form
-            console.log(res.data)
-
-            console.log(res.data.userInfo)
-            //if userInfo is false
-                //navigate("/accReg")
-            //else
-                //navigate("/Homepage?")
-    
-        }
-        catch(err){
-            //need to send a res.status(409)
-            //setError(err.response.data)
-        }
-=======
     const handleSubmit = (e) => {
         e.preventDefault();
         //send info to auth/backend
         navigate("/accReg")
         console.log("submitted")
->>>>>>> parent of 69884ae (Post register route)
     };
 
     const onChange = (e) => {

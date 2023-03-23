@@ -149,7 +149,7 @@ const AccRegistration = () => {
                 <label>State</label>
                     <select name="tates" id="states">
                         {states.map(state=>(
-                            <option value={state[1]} requried>{state[0]}</option>
+                            <option value={state[1]} required>{state[0]}</option>
                         ))}
                     </select> 
                 </div>
