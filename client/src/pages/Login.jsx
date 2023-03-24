@@ -43,7 +43,7 @@ const Login = () => {
             console.log(res.data)
 
             if(res.data.hasAccInfo === false)
-                navigate("/accReg")
+                navigate("/accInfo")
             else    
                 navigate("/QuoteHistory")
 

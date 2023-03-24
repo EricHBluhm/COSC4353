@@ -26,7 +26,6 @@ export const register = (req,res) =>{
             //hash password
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(req.body.password, salt)
-
             newUser.password = hash;
 
             users.push(newUser);
@@ -45,19 +44,29 @@ export const register = (req,res) =>{
 export const login = (req,res) =>{
     try{
 
-        let currentUser = req.body;
+        let currentUser = req.body; //form data
 
         //check to see if user exists and password matches
         let foundUser = users.find(user => user.email === currentUser.email );
         if(!foundUser)
+        {
+            console.log("User does not exist")
             return res.status(500).json("Account Does Not Exist")
-        if(foundUser.password != currentUser.password)
-            return res.status(500).json("Password is incorrect")
+        }
 
+        const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
+        
+        if(!isPasswordCorrect)
+        {
+            console.log("Password is incorrect")
+            return res.status(500).json("Password is incorrect")
+        }
+           
+        console.log("Logged in Sucessfully")
         //send user back to frontEnd so we can see if userAcc is true or false
         res.json(foundUser)
     }catch(err){
-        
+        console.log(err);
     }
 
 }
