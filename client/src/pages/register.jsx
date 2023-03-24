@@ -52,14 +52,10 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-
-
             const res = await axios.post("/auth/register", values);
             console.log(res.data)
             navigate("/Login")
             //console.log("submitted")
-
-
 
         }catch (err){
             console.log(err)

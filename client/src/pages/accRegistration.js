@@ -1,11 +1,14 @@
 import '../App.css';
 import "../components/formInput.css";
-import {useState} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useState, useContext} from "react";
+import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import axios from "axios";
+import { AuthContext } from '../context/authContext';
 
 const AccRegistration = () => {
+
+    const {currentUser} = useContext(AuthContext); //lets us get currentUser info
 
     const [values, setValues] = useState({
         fullName:"",
@@ -14,6 +17,7 @@ const AccRegistration = () => {
         city:"",
         zipcode:"",
         states:"",
+        curUser: currentUser.email,
     })
 
     //with auth context, add email above then delete it later 
@@ -137,6 +141,8 @@ const AccRegistration = () => {
         try{
             const res = await axios.post("/auth/accInfo", values);
             console.log(res.data)
+            console.log(currentUser.email)
+            navigate("/QuoteHistory")
             //console.log(res.data.hello)
             //console.log(res.data.values.zipcode)
         }catch (err){

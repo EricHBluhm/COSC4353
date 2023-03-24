@@ -12,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/accInfo" element={<AccRegistration />}/>
           <Route path="/Login" element={<Login />}/>
+          <Route path="/" element={<Login />}/>
           <Route path="/Register" element={<Register />}/>
           <Route path="/QuoteForm" element={<QuoteForm />}/>
           <Route path="/QuoteHistory" element={<QuoteHistory />}/>

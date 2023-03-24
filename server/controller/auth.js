@@ -11,6 +11,7 @@ let users = [
         address2: "Apt 2",
         city: "Town",
         zipcode: "1234567",
+        state: "TX",
         userInfo: true,
     }
 ]
@@ -84,18 +85,24 @@ export const login = (req,res) =>{
 
 export const accInfo = (req,res) =>{
     try{
-        let currentUser = req.body;
+        let {fullName,address1,address2,city,zipcode,states,curUser} = req.body;
 
-        let foundUser = users.find(user => user.email === currentUser.email );
+        let foundUser = users.find(user => user.email === curUser );
+
+        foundUser.fullname = fullName;
+        foundUser.address1 = address1;
+        foundUser.address2 = address2;
+        foundUser.city = city;
+        foundUser.zipcode = zipcode;
+        foundUser.state = states;
+        foundUser.userInfo = true;
 
         //update with values from currentUser
 
-        res.json(currentUser);
+        res.json(foundUser);
 
     }catch(err){
         
     }
-
-
   
 }
