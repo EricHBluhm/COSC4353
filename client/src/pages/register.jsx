@@ -55,7 +55,7 @@ const Register = () => {
 
 
             const res = await axios.post("/auth/register", values);
-            console.log(res.data.hasAccInfo)
+            console.log(res.data)
             //navigate("/Login")
             //console.log("submitted")
 

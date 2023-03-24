@@ -1,3 +1,5 @@
+import bcrypt from "bcryptjs"
+
 
 let users = [
     {
@@ -18,14 +20,23 @@ export const register = (req,res) =>{
 
         let newUser = req.body;
 
-        //form validaitons
-        //check to see if user already exists
-            //if does not, save to DB
+        let foundUser = users.find(user => user.email === newUser.email );
+        if(!foundUser) //if there is no user with newUser's email, create a new user
+        {
+            //hash password
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(req.body.password, salt)
 
-        //add accInfo:false to newUser object
-        //return newUser to frontend
-        users.push(newUser);
-        res.json(newUser)
+            newUser.password = hash;
+
+            users.push(newUser);
+            res.json(newUser)
+        }
+        else
+        {
+            return res.status(500).json("Account already Exists")
+        }
+
     }catch(err){
         res.json("TESTING COMPLETE from CONTROLLER")
     }
@@ -35,8 +46,6 @@ export const login = (req,res) =>{
     try{
 
         let currentUser = req.body;
-
-        //form validations
 
         //check to see if user exists and password matches
         let foundUser = users.find(user => user.email === currentUser.email );
@@ -58,9 +67,10 @@ export const login = (req,res) =>{
 export const accInfo = (req,res) =>{
     try{
         let currentUser = req.body;
-        //form validation
 
         let foundUser = users.find(user => user.email === currentUser.email );
+
+        //update with values from currentUser
 
         res.json(currentUser);
 
