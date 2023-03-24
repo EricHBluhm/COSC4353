@@ -8,7 +8,7 @@ import accInfoSchema from "../schemas/accInfoSchema.js";
 const router = express.Router();
 
 router.post("/register", validate(regSchema), register) // /server/auth/register
-router.post("/login", validate(loginSchema),  login) // /server/auth/login
+router.post("/login",  login) // /server/auth/login
 router.post("/accInfo", validate(accInfoSchema), accInfo) // /server/auth/accInfo
 
 export default router

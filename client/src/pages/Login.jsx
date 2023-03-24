@@ -1,8 +1,9 @@
 import '../App.css';
-import {useState} from "react";
+import {useState, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import axios from "axios";
+import { AuthContext } from '../context/authContext';
 
 const Login = () => {
 
@@ -35,14 +36,18 @@ const Login = () => {
         },
     ]
 
+    const {login} = useContext(AuthContext)
+    const {currentUser} = useContext(AuthContext); //lets us get currentUser info
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const res = await axios.post("/auth/login", values);
-            console.log(res.data)
+            //const res = await axios.post("/auth/login", values);
 
-            if(res.data.hasAccInfo === false)
+            await login(values)
+            console.log(currentUser)
+
+            if(currentUser.hasAccInfo === false)
                 navigate("/accInfo")
             else    
                 navigate("/QuoteHistory")

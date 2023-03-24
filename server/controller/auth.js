@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 
-
+//Users DB
 let users = [
     {
         email: "Billy@bob.com",
@@ -46,7 +47,7 @@ export const login = (req,res) =>{
 
         let currentUser = req.body; //form data
 
-        //check to see if user exists and password matches
+        //check to see if user exists
         let foundUser = users.find(user => user.email === currentUser.email );
         if(!foundUser)
         {
@@ -54,8 +55,8 @@ export const login = (req,res) =>{
             return res.status(500).json("Account Does Not Exist")
         }
 
+        //check to see if password matches
         const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
-        
         if(!isPasswordCorrect)
         {
             console.log("Password is incorrect")
@@ -63,8 +64,16 @@ export const login = (req,res) =>{
         }
            
         console.log("Logged in Sucessfully")
+        delete foundUser.password; //delete password so we don't send to front end
+
+        //json webtoken
+        const token = jwt.sign({id:foundUser.email}, "jwtkey");
+        res.cookie("access_token", token, {
+            httpOnly:true
+        }).status(200).json(foundUser)
+
         //send user back to frontEnd so we can see if userAcc is true or false
-        res.json(foundUser)
+        //res.json(foundUser)
     }catch(err){
         console.log(err);
     }
