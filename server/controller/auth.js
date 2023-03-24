@@ -62,7 +62,7 @@ export const accInfo = (req,res) =>{
 
         let foundUser = users.find(user => user.email === currentUser.email );
 
-        res.json(currentUser.testing);
+        res.json(currentUser);
 
     }catch(err){
         

@@ -13,7 +13,10 @@ const AccRegistration = () => {
         address2:"",
         city:"",
         zipcode:"",
+        states:"",
     })
+
+    //with auth context, add email above then delete it later 
 
     const navigate = useNavigate()
 
@@ -132,7 +135,7 @@ const AccRegistration = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const res = await axios.post("/auth/accInfo", {values,testing});
+            const res = await axios.post("/auth/accInfo", values);
             console.log(res.data)
             //console.log(res.data.hello)
             //console.log(res.data.values.zipcode)
@@ -160,7 +163,7 @@ const AccRegistration = () => {
                 ))}
                 <div className="formInput">
                 <label>State</label>
-                    <select name="tates" id="states">
+                    <select name="states" id="states" onChange={onChange}>
                         {states.map(state=>(
                             <option value={state[1]} required>{state[0]}</option>
                         ))}

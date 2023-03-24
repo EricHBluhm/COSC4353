@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
         <Routes>
-          <Route path="/accReg" element={<AccRegistration />}/>
+          <Route path="/accInfo" element={<AccRegistration />}/>
           <Route path="/Login" element={<Login />}/>
           <Route path="/Register" element={<Register />}/>
           <Route path="/QuoteForm" element={<QuoteForm />}/>
