@@ -1,13 +1,13 @@
-const express = require("express")
+import express from "express"
 const router = express.Router();
-const DataPlaceholder = require("./placeHolder.json")
+//const DataPlaceholder = require("./placeHolder.json")
 
 router.route('/').get((req,res) => {
-    res.json(DataPlaceholder)
+    res.json(require("./placeHolder.json"))
 })
 
 router.route('/').get((req,res) => {  
     res.sendStatus(200)
 })
 
-module.exports = router
+export default router

@@ -2,9 +2,12 @@ import QuoteTable from "./QuoteTable"
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
+import { useNavigate } from "react-router-dom";
 
 export default function QuoteHistory() {
   
+  const navigate = useNavigate()
+
   return (
     <nav className="main-body"> 
       <nav>
@@ -13,7 +16,7 @@ export default function QuoteHistory() {
                 <Button variant="contained" /*onClick={}*/ >
                   Previous Page
                 </Button>
-                <Button variant="contained"  /*onClick={}*/ color="success" endIcon={<SendIcon />}>
+                <Button variant="contained"  onClick={navigate("/QuoteForm")} color="success" endIcon={<SendIcon />}>
                   New Fuel Quote
                 </Button>
             </Stack>

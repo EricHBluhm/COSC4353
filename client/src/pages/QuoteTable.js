@@ -1,11 +1,13 @@
 import DataTable, { createTheme } from "react-data-table-component";
-import {useState, useEffect, useCallback, useMemo} from "react"
+import {useState, useEffect, useCallback, useMemo, useContext} from "react"
 import Button from '@mui/material/Button';
-import dataHolder from './placeHolder.json'
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import _ from 'lodash';
 import React from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from '../context/authContext';
+import axios from "axios"
 
 
 
@@ -13,6 +15,8 @@ export default function QuoteTable() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   //const [perPage, setPerPage] = useState(10)
+
+  const {currentUser} = useContext(AuthContext);
 
   const columns = [
     {
@@ -136,8 +140,11 @@ const customStyles = {
         setData(dataAPI)
       }
     )
+
+
+
     // MODIFY TO BE CONNECTED TO THE BACKEND SERVER
-    setData(dataHolder)
+    // setData(dataAPI)
     /*const URL = "http://localhost:3001/history"
     const response = await fetch(URL)
     const users = await response.json()
