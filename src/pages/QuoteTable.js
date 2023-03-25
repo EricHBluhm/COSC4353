@@ -1,10 +1,11 @@
 import DataTable, { createTheme } from "react-data-table-component";
 import {useState, useEffect, useCallback, useMemo} from "react"
-import DataPlaceholder from "./dataPlaceholder.json"
 import Button from '@mui/material/Button';
+import dataHolder from './placeHolder.json'
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import _ from 'lodash';
+import React from 'react';
 
 
 
@@ -12,7 +13,7 @@ export default function QuoteTable() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   //const [perPage, setPerPage] = useState(10)
-  
+
   const columns = [
     {
       name: "ID Quote",
@@ -79,10 +80,10 @@ export default function QuoteTable() {
 createTheme('solarized', {
   text: {
     primary: '#eeeeee',
-    secondary: '#EBD587',
+    secondary: '#eeeeee',
   },
   background: {
-    default: '#3A424F',
+    default: '#AFBC88',
   },
   context: {
     background: '#cb4b16',
@@ -127,18 +128,26 @@ const customStyles = {
     setLoading(true)
 
     // gets the data of the users from JSON html file
-    
-    /*const URL = """
-    const response = await fetch(URL)
-    const users = await response.json()*/
 
-    const users = DataPlaceholder //local placeholder has repeated values
-    setData(users)
-    setLoading(false) 
-   }
+    fetch("http://localhost:3001/history").then(
+      response => response.json()
+    ).then(
+      dataAPI => {
+        setData(dataAPI)
+      }
+    )
+    // MODIFY TO BE CONNECTED TO THE BACKEND SERVER
+    setData(dataHolder)
+    /*const URL = "http://localhost:3001/history"
+    const response = await fetch(URL)
+    const users = await response.json()
+    setData(users)*/
+
+    setLoading(false)
+  }
 
    // A super simple expandable component.
-const ExpandedComponent = ({ data }) => 
+const ExpandedComponent = ({ data }) =>
 <p><center><small>Status =  Your {data.gallonsRequested} gallons delivering to {data.deliveryAddress} have been approved</small></center></p>;
 
 
@@ -153,11 +162,13 @@ const ExpandedComponent = ({ data }) =>
 
   const contextActions = useMemo(() => {
 		const handleDelete = () => {
-			
+
 			if (window.confirm(`Are you sure you want to delete the following fuel quote/s:\r${selectedRows.map(r => r.ID)}?`)) {
 				setToggleCleared(!toggleCleared);
 				setData(_.differenceBy(data, selectedRows));
-			}
+        // deletes selected rows in the original data from the respective user
+
+      }
 		};
 
     return ( 
