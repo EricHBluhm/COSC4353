@@ -1,6 +1,6 @@
 import express from "express"
 import { createForm } from '../controller/forms.js'
-import quoteSchema from '../Validation/quoteFormSchema.js'
+import quoteSchema from '../schemas/quoteFormSchema.js'
 import quoteValidation from '../middleware/formValidate.js'
 
 
