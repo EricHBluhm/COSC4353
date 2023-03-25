@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from './runServer.js'
+import app from '../server/app.js'
 
 describe("Post to /quotes/quotform", () =>{
     describe("given form data", () =>{
