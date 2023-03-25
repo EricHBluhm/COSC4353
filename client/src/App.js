@@ -3,15 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import AccRegistration from "./pages/accRegistration";
 import Login from "./pages/Login";
 import Register from "./pages/register";
-import QuoteForm from './pages/fuelQuoteForm';
-import QuoteHistory from './pages/quoteHistory';
+import QuoteForm from "./pages/fuelQuoteForm"
+import QuoteHistory from "./pages/quoteHistory"
 
 function App() {
   return (
     <Router>
         <Routes>
-          <Route path="/accReg" element={<AccRegistration />}/>
+          <Route path="/accInfo" element={<AccRegistration />}/>
           <Route path="/Login" element={<Login />}/>
+          <Route path="/" element={<Login />}/>
           <Route path="/Register" element={<Register />}/>
           <Route path="/QuoteForm" element={<QuoteForm />}/>
           <Route path="/QuoteHistory" element={<QuoteHistory />}/>

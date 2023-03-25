@@ -7,12 +7,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import _ from 'lodash';
 
 
-
 export default function QuoteTable() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   //const [perPage, setPerPage] = useState(10)
   
+  
+
   const columns = [
     {
       name: "ID Quote",
