@@ -1,16 +1,16 @@
-import './fuelQuoteForm.css'
+import './App.css'
 import { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import axios from 'axios'
+import { AuthContext } from '../context/authContext';
 
 
 
-export default function QuoteForm() {
+export default function App() {
   const [date, setDate] = useState(new Date());
   const { register, handleSubmit, formState: {errors} } = useForm();
+  const {currentUser} = useContext(AuthContext);
 
   
   return (
@@ -25,8 +25,17 @@ export default function QuoteForm() {
       </p>
       <div className = "quoteForm">
         <form 
-          onSubmit={handleSubmit((data) => {
-            console.log(data);
+          onSubmit={handleSubmit( async (data) => {
+            try{
+              let values = data;
+              values.email = currentUser.email;
+
+              const res = await axios.post("/quotes/quoteForm", values);
+              console.log(values);
+
+            }catch(err){
+              console.log(err);
+            }
           })}
         >
           <label>Number of Gallons:</label>
@@ -38,7 +47,7 @@ export default function QuoteForm() {
           <p>{errors.address?.message}</p>
   
           <label>Desired Delivery Date: </label>
-          <DatePicker selected={date} onChange={date => setDate(date)}/>
+          <input {...register("deliveryDate", {required: 'A valid date is required.'})} type="date" minLength="5" placeholder="3/14/53"/>
 
           <div className = "bottomForm">
             <label>Suggested Rate: </label>
@@ -57,4 +66,3 @@ export default function QuoteForm() {
     </main>
   )
 }
-
