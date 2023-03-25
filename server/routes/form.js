@@ -7,7 +7,7 @@ import quoteValidation from '../middleware/formValidate.js'
 const router = express.Router();
 
 
-router.post("/quoteForm", createForm)
+router.post("/quoteForm", quoteValidation(quoteSchema), createForm)
 
 
 export default router;
