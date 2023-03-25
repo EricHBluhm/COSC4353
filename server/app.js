@@ -9,6 +9,7 @@ const app = express();
 app.use(cookieParser())
 app.use(express.json());
 
+app.use("/history", require("./routes/data.js"));
 app.use("/server/auth", AuthRoutes)
 app.use('/server/quotes', quoteRoutes)
 
