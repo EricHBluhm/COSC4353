@@ -1,5 +1,7 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import User from "../models/User"
+import UserInfo from "../models/userInfo"
 
 //Users DB
 let users = [
@@ -18,12 +20,17 @@ let users = [
 ]
 
 
-export const register = (req,res) =>{
+export const register = async (req,res) =>{
     try{
 
-        let newUser = req.body;
+        const {
+            email,
+            password,
+            hassAccInfo,
+        }  = req.body;
 
-        let foundUser = users.find(user => user.email === newUser.email );
+        const foundUser  = await User.findOne({email:email}); //check to see if user already exists
+        //let foundUser = users.find(user => user.email === newUser.email );
         if(!foundUser) //if there is no user with newUser's email, create a new user
         {
             //hash password
@@ -31,9 +38,19 @@ export const register = (req,res) =>{
                 //const hash = bcrypt.hashSync(req.body.password, salt)
                 //newUser.password = hash;
 
-            users.push(newUser);
+            //create new user for MongoDB
+            const newUser = new User({
+                email,
+                password,
+                hassAccInfo,
+            })
+
+            //users.push(newUser);
+            //save newUser to DB
+            const savedUser = await newUser.save();
+
             res.status(201);
-            return res.json(newUser);
+            return res.json(savedUser);
         }
         else
         {
@@ -46,13 +63,15 @@ export const register = (req,res) =>{
     }
 }
 
-export const login = (req,res) =>{
+export const login = async (req,res) =>{
     try{
 
         let currentUser = req.body; //form data
 
         //check to see if user exists
-        let foundUser = users.find(user => user.email === currentUser.email );
+        //let foundUser = users.find(user => user.email === currentUser.email );
+        const foundUser = await User.findOne({email:email});
+        
         if(!foundUser)
         {
             console.log("User does not exist")
@@ -62,6 +81,7 @@ export const login = (req,res) =>{
         //check to see if password matches
             //const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
             //if(!isPasswordCorrect)
+
         if(currentUser.password != foundUser.password)
         {
             console.log("Password is incorrect")
@@ -88,11 +108,12 @@ export const login = (req,res) =>{
 
 
 
-export const accInfo = (req,res) =>{
+export const accInfo = async (req,res) =>{
     try{
         let {fullName,address1,address2,city,zipcode,states,curUser} = req.body;
 
-        let foundUser = users.find(user => user.email === curUser );
+        //let foundUser = users.find(user => user.email === curUser );
+        const foundUser = await User.findOne({curUser:email});
 
         if(!foundUser)
         {
@@ -100,17 +121,30 @@ export const accInfo = (req,res) =>{
             return res.status(500).json("Account Does Not Exist")
         }
 
-        foundUser.fullname = fullName;
-        foundUser.address1 = address1;
-        foundUser.address2 = address2;
-        foundUser.city = city;
-        foundUser.zipcode = zipcode;
-        foundUser.state = states;
-        foundUser.userInfo = true;
+
+        const newUserInfo = new UserInfo ({
+            curUser,
+            fullName,
+            address1,
+            address2,
+            city,
+            zipcode,
+            states,
+        })
+
+        // foundUser.fullname = fullName;
+        // foundUser.address1 = address1;
+        // foundUser.address2 = address2;
+        // foundUser.city = city;
+        // foundUser.zipcode = zipcode;
+        // foundUser.state = states;
+        // foundUser.userInfo = true;
 
         //update with values from currentUser
 
-        res.status(201).json(foundUser);
+        const savedUserInfo = await newUserInfo.save();
+
+        res.status(201).json(savedUserInfo);
 
     }catch(err){
         res.status(500).json(err);

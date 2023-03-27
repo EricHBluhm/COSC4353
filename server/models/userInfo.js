@@ -3,6 +3,12 @@ import mongoose from "mongoose";
 //schema object
 const UserInfoSchema = new mongoose.Schema( //schema for mongoose
     {
+        email: {
+            type: String,
+            required: true,
+            max: 50,
+            unique: true, //no duplicate emails
+        },
         fullName: {
             type: String, //string
             required: true, //must be used
