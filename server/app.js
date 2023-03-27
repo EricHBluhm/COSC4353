@@ -14,4 +14,11 @@ app.use("/history", tableRoutes);
 app.use("/server/auth", AuthRoutes)
 app.use('/server/quotes', quoteRoutes)
 
+main().catch(err => console.log(err));
+     
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes');
+}
+
+
 export default app

@@ -106,8 +106,6 @@ export const login = async (req,res) =>{
 
 }
 
-
-
 export const accInfo = async (req,res) =>{
     try{
         let {fullName,address1,address2,city,zipcode,states,curUser} = req.body;
