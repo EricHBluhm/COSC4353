@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import User from "../models/User.js"
-import UserInfo from "../models/userInfo.js"
+import UserInfo from "../models/UserInfo.js"
 
 //Users DB
 let users = [
@@ -26,9 +26,10 @@ export const register = async (req,res) =>{
         const {
             email,
             password,
-            hassAccInfo,
+            hasAccInfo,
         }  = req.body;
 
+        console.log(email)
         const foundUser  = await User.findOne({email:email}); //check to see if user already exists
         //let foundUser = users.find(user => user.email === newUser.email );
         if(!foundUser) //if there is no user with newUser's email, create a new user
@@ -42,7 +43,7 @@ export const register = async (req,res) =>{
             const newUser = new User({
                 email,
                 password,
-                hassAccInfo,
+                hasAccInfo,
             })
 
             //users.push(newUser);
@@ -70,7 +71,8 @@ export const login = async (req,res) =>{
 
         //check to see if user exists
         //let foundUser = users.find(user => user.email === currentUser.email );
-        const foundUser = await User.findOne({email:email});
+        const foundUser = await User.findOne({email:currentUser.email}).exec();
+        //const foundUser = await User.findById(currentUser._id).exec();
         
         if(!foundUser)
         {
@@ -108,26 +110,27 @@ export const login = async (req,res) =>{
 
 export const accInfo = async (req,res) =>{
     try{
-        let {fullName,address1,address2,city,zipcode,states,curUser} = req.body;
+        let {fullName,address1,address2,city,zipcode,states,email} = req.body;
 
         //let foundUser = users.find(user => user.email === curUser );
-        const foundUser = await User.findOne({curUser:email});
-
+        const foundUser = await User.findOne({email:email}).exec();
         if(!foundUser)
         {
             console.log("User does not exist")
             return res.status(500).json("Account Does Not Exist")
         }
 
+        //const updateUser = await User.findOneAndUpdate(email:)
 
-        const newUserInfo = new UserInfo ({
-            curUser,
+        console.log("creating new user info table")
+        const newUserInfo = new UserInfo({
+            email,
             fullName,
             address1,
             address2,
             city,
-            zipcode,
             states,
+            zipcode,
         })
 
         // foundUser.fullname = fullName;
@@ -140,7 +143,11 @@ export const accInfo = async (req,res) =>{
 
         //update with values from currentUser
 
+        console.log("creating new user info table2")
+
         const savedUserInfo = await newUserInfo.save();
+
+        console.log("creating new user info table")
 
         res.status(201).json(savedUserInfo);
 

@@ -14,11 +14,12 @@ const UserSchema = new mongoose.Schema( //schema for mongoose
             required: true,
             min: 5,
             max: 50,
-            unique: true, //no duplicate emails
         },
-        userInfo: Boolean,
+        hasAccInfo: {
+            type: String,
+            requried: true,
+         },
     },
-    {timestamps: true} //dates when updated/created
 );
 
 const User = mongoose.model("User", UserSchema) //create mongoose schema first (above), then pass into mongoose.model, into "User" schema in database

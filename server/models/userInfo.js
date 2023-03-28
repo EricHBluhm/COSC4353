@@ -7,7 +7,6 @@ const UserInfoSchema = new mongoose.Schema( //schema for mongoose
             type: String,
             required: true,
             max: 50,
-            unique: true, //no duplicate emails
         },
         fullName: {
             type: String, //string
@@ -29,20 +28,19 @@ const UserInfoSchema = new mongoose.Schema( //schema for mongoose
             required: true,
             max: 100,
         },
-        state: {
+        states: {
             type: String,
             required: true,
-            max: 2,
+            max: 3,
         },
         zipcode: {
-            type: Number,
+            type: String,
             required: true,
             min: 5,
             max: 9,
         },
 
     },
-    {timestamps: true} //dates when updated/created
 );
 
 const UserInfo = mongoose.model("UserInfo", UserInfoSchema) //create mongoose schema first (above), then pass into mongoose.model, into "User" schema in database
