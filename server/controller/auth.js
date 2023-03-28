@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
-import User from "../models/User"
-import UserInfo from "../models/userInfo"
+import User from "../models/User.js"
+import UserInfo from "../models/userInfo.js"
 
 //Users DB
 let users = [

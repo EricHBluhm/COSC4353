@@ -3,7 +3,7 @@ import AuthRoutes from "./routes/auth.js"
 import quoteRoutes from './routes/form.js'
 import cookieParser from "cookie-parser"
 import tableRoutes from './routes/data.js'
-
+import mongoose from "mongoose"
 
 
 const app = express();
