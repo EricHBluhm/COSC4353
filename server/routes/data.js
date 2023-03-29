@@ -1,9 +1,9 @@
-import express from "express"
+import express from "express";
+import data from "./placeHolder.json" assert { type: "json" };
 const router = express.Router();
-//const DataPlaceholder = require("./placeHolder.json")
 
 router.route('/').get((req,res) => {
-    res.json(require("./placeHolder.json"))
+    res.json(data)
 })
 
 router.route('/').get((req,res) => {  

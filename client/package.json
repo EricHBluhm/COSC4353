@@ -49,6 +49,7 @@
   },
   "proxy": "http://localhost:8800/server/",
   "devDependencies": {
+    "nodemon": "^2.0.22",
     "react-test-renderer": "^18.2.0"
   }
 }
