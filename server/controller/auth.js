@@ -139,7 +139,13 @@ export const accInfo = async (req,res) =>{
 
         //update User to have accountInfo
         await User.findOneAndUpdate({email:email}, {hasAccInfo: "true"})
-    
+        // foundUser.fullname = fullName;
+        // foundUser.address1 = address1;
+        // foundUser.address2 = address2;
+        // foundUser.city = city;
+        // foundUser.zipcode = zipcode;
+        // foundUser.state = states;
+        // foundUser.userInfo = true;
 
         //update with values from currentUser
 
