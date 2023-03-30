@@ -44,10 +44,10 @@ const Login = () => {
         try{
             //const res = await axios.post("/auth/login", values);
 
-            await login(values)
-           // console.log(currentUser)
+            let res = await login(values)
+            console.log(res)
 
-            if(currentUser.hasAccInfo === "false")
+            if(res.hasAccInfo === "false")
             {
                 console.log("Fill in User Info")
                 navigate("/accInfo")
