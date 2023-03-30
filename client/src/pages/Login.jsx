@@ -47,7 +47,7 @@ const Login = () => {
             await login(values)
             console.log(currentUser)
 
-            if(currentUser.hasAccInfo === "false")
+            if(currentUser.hasAccInfo == "false")
             {
                 console.log("Fill in User Info")
                 navigate("/accInfo")
