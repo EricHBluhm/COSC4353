@@ -23,7 +23,7 @@ let users = [
 export const register = async (req,res) =>{
     try{
 
-        let {
+        const {
             email,
             password,
             hasAccInfo,
@@ -35,9 +35,9 @@ export const register = async (req,res) =>{
         if(!foundUser) //if there is no user with newUser's email, create a new user
         {
             //hash password
-                const salt = bcrypt.genSaltSync(10);
-                const hash = bcrypt.hashSync(req.body.password, salt)
-                password = hash;
+                //const salt = bcrypt.genSaltSync(10);
+                //const hash = bcrypt.hashSync(req.body.password, salt)
+                //newUser.password = hash;
 
             //create new user for MongoDB
             const newUser = new User({
@@ -81,11 +81,10 @@ export const login = async (req,res) =>{
         }
 
         //check to see if password matches
-            const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
+            //const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
             //if(!isPasswordCorrect)
 
-        //if(currentUser.password != foundUser.password)
-        if (!isPasswordCorrect)
+        if(currentUser.password != foundUser.password)
         {
             console.log("Password is incorrect")
             return res.status(500).json("Password is incorrect")
@@ -93,9 +92,6 @@ export const login = async (req,res) =>{
            
         console.log("Logged in Sucessfully")
         delete foundUser.password; //delete password so we don't send to front end
-
-        const hasInfo = await User
-
 
         //json webtoken
         const token = jwt.sign({id:foundUser.email}, "jwtkey");
@@ -139,7 +135,13 @@ export const accInfo = async (req,res) =>{
 
         //update User to have accountInfo
         await User.findOneAndUpdate({email:email}, {hasAccInfo: "true"})
-    
+        // foundUser.fullname = fullName;
+        // foundUser.address1 = address1;
+        // foundUser.address2 = address2;
+        // foundUser.city = city;
+        // foundUser.zipcode = zipcode;
+        // foundUser.state = states;
+        // foundUser.userInfo = true;
 
         //update with values from currentUser
 
