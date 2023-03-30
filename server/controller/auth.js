@@ -23,7 +23,7 @@ let users = [
 export const register = async (req,res) =>{
     try{
 
-        const {
+        let {
             email,
             password,
             hasAccInfo,
@@ -35,9 +35,9 @@ export const register = async (req,res) =>{
         if(!foundUser) //if there is no user with newUser's email, create a new user
         {
             //hash password
-                //const salt = bcrypt.genSaltSync(10);
-                //const hash = bcrypt.hashSync(req.body.password, salt)
-                //newUser.password = hash;
+                const salt = bcrypt.genSaltSync(10);
+                const hash = bcrypt.hashSync(req.body.password, salt)
+                password = hash;
 
             //create new user for MongoDB
             const newUser = new User({
@@ -81,10 +81,11 @@ export const login = async (req,res) =>{
         }
 
         //check to see if password matches
-            //const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
+            const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
             //if(!isPasswordCorrect)
 
-        if(currentUser.password != foundUser.password)
+        // if(currentUser.password != foundUser.password)
+        if(!isPasswordCorrect)
         {
             console.log("Password is incorrect")
             return res.status(500).json("Password is incorrect")
@@ -157,4 +158,11 @@ export const accInfo = async (req,res) =>{
         res.status(500).json(err);
     }
   
+}
+
+export const logout = (req,res) => {
+            res.clearCookies("access_token",{
+                sameSite:"none",
+                secure:true
+            }).status(200).json("User Logged Out")
 }
