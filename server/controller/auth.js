@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken"
 import User from "../models/User.js"
 import UserInfo from "../models/UserInfo.js"
 
+import {hashPassword,comparePassword} from "../utils/helpers.js"
+
 //Users DB
 let users = [
     {
@@ -31,13 +33,14 @@ export const register = async (req,res) =>{
 
         console.log(email)
         const foundUser  = await User.findOne({email:email}); //check to see if user already exists
+        
         //let foundUser = users.find(user => user.email === newUser.email );
         if(!foundUser) //if there is no user with newUser's email, create a new user
         {
             //hash password
-                const salt = bcrypt.genSaltSync(10);
-                const hash = bcrypt.hashSync(req.body.password, salt)
-                password = hash;
+                // const salt = bcrypt.genSaltSync(10);
+                // const hash = bcrypt.hashSync(req.body.password, salt)
+                password = hashPassword(password);
 
             //create new user for MongoDB
             const newUser = new User({
@@ -81,7 +84,9 @@ export const login = async (req,res) =>{
         }
 
         //check to see if password matches
-            const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
+            //const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
+            
+            const isPasswordCorrect = comparePassword(currentUser.password,foundUser.password)
             //if(!isPasswordCorrect)
 
         // if(currentUser.password != foundUser.password)
