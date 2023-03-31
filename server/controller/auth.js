@@ -2,25 +2,7 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import User from "../models/User.js"
 import UserInfo from "../models/UserInfo.js"
-
 import {hashPassword,comparePassword} from "../utils/helpers.js"
-
-//Users DB
-let users = [
-    {
-        email: "Billy@bob.com",
-        password: "Test!1",
-        fullName: "Billy Bob",
-        address1: "1234 Drive",
-        address2: "Apt 2",
-        city: "Town",
-        zipcode: "1234567",
-        state: "TX",
-        userInfo: true,
-    }
-    
-]
-
 
 export const register = async (req,res) =>{
     try{
@@ -59,7 +41,7 @@ export const register = async (req,res) =>{
         else
         {
              res.status(400);
-             return res.json("Account already Exists");
+             res.json("Account already Exists");
         }
 
     }catch(err){
