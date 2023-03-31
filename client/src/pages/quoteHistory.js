@@ -14,10 +14,10 @@ export default function QuoteHistory() {
       <nav>
         <header className = "navigation-bar">
             <Stack direction="row" spacing={2} >
-                <Button variant="contained" /*onClick={}*/ >
+                <Button variant="contained" onClick={() => { navigate("/Login"); }} >
                   Log out
                 </Button>
-                <Button variant="contained"  onClick={navigate("/QuoteForm")} color="success" endIcon={<SendIcon />}>
+                <Button variant="contained"  onClick={() => { navigate("/QuoteForm"); }} color="success" endIcon={<SendIcon />}>
                   New Fuel Quote
                 </Button>
             </Stack>

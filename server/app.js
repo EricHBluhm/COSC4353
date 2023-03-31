@@ -14,4 +14,5 @@ app.use("/history", tableRoutes);
 app.use("/server/auth", AuthRoutes)
 app.use('/server/quotes', quoteRoutes)
 
+
 export default app

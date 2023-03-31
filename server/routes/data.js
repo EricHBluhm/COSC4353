@@ -10,4 +10,11 @@ router.route('/').get((req,res) => {
     res.sendStatus(200)
 })
 
+router.route('/:ID').delete((req,res) => {
+    const { ID } = req.params;
+    delete data[ID]
+    // HERE database queries
+    
+})
+
 export default router

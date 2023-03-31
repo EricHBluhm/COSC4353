@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 import axios from 'axios'
 import { AuthContext } from '../context/authContext';
 import "./fuelQuoteForm.css"
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +15,7 @@ export default function App() {
   const [date, setDate] = useState(new Date());
   const { register, handleSubmit, formState: {errors} } = useForm();
   const {currentUser} = useContext(AuthContext);
+  const navigate = useNavigate()
 
   
   return (
@@ -60,10 +64,17 @@ export default function App() {
             <p>{errors.realPrice?.message}</p>
   
             <input type = "submit" />
+            <Button variant="contained"  onClick={() => { navigate("/QuoteHistory"); }}  endIcon={<SendIcon />}>
+                  See Quotes History
+            </Button>
           </div>
-
         </form>
       </div>
+      <div className='sep'> </div>
+      <footer className = "FORMfooter-main"> 
+          <center><small>© 2023 All Rights Reserved. University of Houston. Department of Computer Science.</small></center>
+      </footer>
     </main>
+    
   )
 }

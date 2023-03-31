@@ -137,7 +137,7 @@ const customStyles = {
     const response = await fetch(URL)
     const users = await response.json()
     setData(users)
-    await delay(500);
+    await delay(100);
     setLoading(false) 
   }
 

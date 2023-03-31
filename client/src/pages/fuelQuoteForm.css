@@ -125,3 +125,17 @@ input[type="submit"]:active {
   padding : 20px;
   border-radius: 15px;
 }
+
+.sep{
+  padding-top: 100px;
+}
+
+.FORMfooter-main{
+  font-family: 'Nanum Gothic', sans-serif;
+  border: dashed #F8F272;
+  color: white;
+  background:#40531B;
+  padding-top: 10px;
+  padding-bottom: 15px;
+
+}
