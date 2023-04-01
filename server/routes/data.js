@@ -7,7 +7,7 @@ router.route('/').get( async (req,res) => {
     let {email} = req.body;
     const fuelQuotes = await quoteInfoSchema.find({email:email})
 
-    fuelQuotes[0].id
+   // fuelQuotes[0].id
 
     res.json(fuelQuotes)
 })
