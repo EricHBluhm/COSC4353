@@ -2,12 +2,14 @@ import mongoose from "mongoose"
 
 const quoteSchema = new mongoose.Schema({
     realPrice: {
-        type: String,
-        required: true
+        type: Number,
+        required: true,
+        min: 50
     },
     suggPrice: {
-        type: String,
-        required: true
+        type: Number,
+        required: true,
+        min: 2
     },
     deliveryDate: {
         type:Date,
@@ -15,11 +17,19 @@ const quoteSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        min: 12,
+        max: 50
     },
     gallonsRequested: {
+        type: Number,
+        required: true,
+        min: 100
+    },
+    email: {
         type: String,
-        required: true
+        required: true,
+        min: 12
     }
 
 
