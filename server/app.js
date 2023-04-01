@@ -3,6 +3,7 @@ import AuthRoutes from "./routes/auth.js"
 import quoteRoutes from './routes/form.js'
 import cookieParser from "cookie-parser"
 import tableRoutes from './routes/data.js'
+import mongoose from "mongoose"
 import cors from 'cors'
 
 
@@ -13,6 +14,12 @@ app.use(express.json());
 app.use("/history", tableRoutes);
 app.use("/server/auth", AuthRoutes)
 app.use('/server/quotes', quoteRoutes)
+
+main().catch(err => console.log(err));
+     
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes');
+}
 
 
 export default app

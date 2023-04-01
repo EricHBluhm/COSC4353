@@ -11,9 +11,14 @@ export const AuthContextProvider = ({children}) =>{
     const login = async(inputs)=>{ //inputs come from login form
         const res = await axios.post("/auth/login",inputs);
         setCurrentUser(res.data)
+        return(res.data)
     }
 
     //logout api call
+    const logout = async(inputs)=>{ //inputs come from login form
+        const res = await axios.post("/auth/logout");
+        setCurrentUser(null)
+    }
 
     //to update whenever we change currentUser
     useEffect(()=>{
@@ -21,7 +26,7 @@ export const AuthContextProvider = ({children}) =>{
     },[currentUser]);
 
     return (
-        <AuthContext.Provider value = {{currentUser,login}}>
+        <AuthContext.Provider value = {{currentUser,login,logout}}>
             {children}
         </AuthContext.Provider>
     );
