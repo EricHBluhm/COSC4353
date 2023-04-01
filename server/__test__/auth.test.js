@@ -57,7 +57,7 @@ const incorrectRegister ={
 
 const userId = new mongoose.Types.ObjectId().toString();
 
-//super test way
+// //super test way
 describe('register', () =>{
 
     // beforeAll(async () => {
@@ -95,7 +95,7 @@ describe('register', () =>{
     it('returns status code 201 if new user created', async () =>{
         const res = await supertest(app).post('/server/auth/register').send({
             _id:userId,
-            email:"jest3@test.com",
+            email:"jest6@test.com",
             password:"Test!1",
             confirmPassword:"Test!1",
             hasAccInfo: "false"
@@ -105,65 +105,90 @@ describe('register', () =>{
     });
 })
 
-// describe('login', () =>{
-//     it('returns status code 500 if user does not exist', async () =>{
-//         const res = await request(app).post('/server/auth/login').send({
-//             email:"ImnotReal@bob.com",
-//             password:"Test!1",
-//         });
-//         expect(res.statusCode).toEqual(500)
-    
-//     });
+describe('login', () =>{
 
-//     it('returns status code 500 if password does not match', async () =>{
-//         const res = await request(app).post('/server/auth/login').send({
-//             email:"Billy@bob.com",
-//             password:"Test!2",
-//         });
-//         expect(res.statusCode).toEqual(500)
-    
-//     });
+    beforeAll(async () => {
+        const mongoServer = await MongoMemoryServer.create()
+        await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes')
+    });
 
-//     it('returns status code 200 if token is created and user logged in', async () =>{
-//         const res = await request(app).post('/server/auth/login').send({
-//             email:"Billy@bob.com",
-//             password:"Test!1",
-//         });
-//         expect(res.statusCode).toEqual(201)
-    
-//     });
-// })
+    afterAll( async () => {
+        await mongoose.disconnect();
+        await mongoose.connection.close();
+    });
 
-// describe('accInfo', () =>{
-//     it('returns status code 500 if user not found', async () =>{
-//         const res = await request(app).post('/server/auth/accInfo').send({
-//             fullName:"Hunter",
-//             address1:"Test!1",
-//             address2:"Test!1",
-//             city:"Test!1",
-//             zipcode:"47383",
-//             states: "TX",
-//             curUser: "Billy2@bob.com"
 
-//         });
-//         expect(res.statusCode).toEqual(500)
+    it('returns status code 500 if user does not exist', async () =>{
+        const res = await supertest(app).post('/server/auth/login').send({
+            email:"ImnotReal@bob.com",
+            password:"Test!1",
+        });
+        expect(res.statusCode).toEqual(500)
     
-//     });
+    });
 
-//     it('returns status code 201 if account info added', async () =>{
-//         const res = await request(app).post('/server/auth/accInfo').send({
-//             fullName:"Hunter",
-//             address1:"Test!1",
-//             address2:"Test!1",
-//             city:"Test!1",
-//             zipcode:"47383",
-//             states: "TX",
-//             curUser: "Billy@bob.com"
-//         });
-//         expect(res.statusCode).toEqual(201)
+    it('returns status code 500 if password does not match', async () =>{
+        const res = await supertest(app).post('/server/auth/login').send({
+            email:"Billy@bob.com",
+            password:"Test!2",
+        });
+        expect(res.statusCode).toEqual(500)
     
-//     });
-// })
+    });
+
+    it('returns status code 200 if token is created and user logged in', async () =>{
+        const res = await supertest(app).post('/server/auth/login').send({
+            email:"Billy@bob.com",
+            password:"Test!1",
+        });
+        expect(res.statusCode).toEqual(201)
+    
+    });
+})
+
+describe('accInfo', () =>{
+
+    beforeAll(async () => {
+        const mongoServer = await MongoMemoryServer.create()
+        await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes')
+    });
+
+    afterAll( async () => {
+        await mongoose.disconnect();
+        await mongoose.connection.close();
+    });
+
+
+    it('returns status code 500 if user not found', async () =>{
+        const res = await supertest(app).post('/server/auth/accInfo').send({
+            fullName:"Hunter",
+            address1:"Test!1",
+            address2:"Test!1",
+            city:"Test!1",
+            zipcode:"47383",
+            states: "TX",
+            curUser: "Billy2@bob.com"
+
+        });
+        expect(res.statusCode).toEqual(500)
+    
+    });
+
+    it('returns status code 201 if account info added', async () =>{
+        const res = await supertest(app).post('/server/auth/accInfo').send({
+            _id:userId,
+            fullName:"Hunter",
+            address1:"Test!1",
+            address2:"Test!1",
+            city:"Test!1",
+            zipcode:"47383",
+            states: "TX",
+            email: "test@test.com"
+        });
+        expect(res.statusCode).toEqual(201)
+    
+    });
+})
 
 
 ///////////////////////////////////////////////////////
