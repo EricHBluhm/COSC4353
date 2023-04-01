@@ -7,7 +7,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../context/authContext';
-import axios from "axios"
+import "./quoteTable.css";
 
 
 
@@ -128,28 +128,16 @@ const customStyles = {
     fetchTableData()
   }, [])
 
+  // to display 'loading' to the user
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
   async function fetchTableData(){
     setLoading(true)
-
-    // gets the data of the users from JSON html file
-
-    fetch("http://localhost:3001/history").then(
-      response => response.json()
-    ).then(
-      dataAPI => {
-        setData(dataAPI)
-      }
-    )
-
-
-
-    // MODIFY TO BE CONNECTED TO THE BACKEND SERVER
-    // setData(dataAPI)
-    /*const URL = "http://localhost:3001/history"
+    const URL = "http://localhost:8800/history"
     const response = await fetch(URL)
     const users = await response.json()
-    setData(users)*/
-    
+    setData(users)
+    await delay(100);
     setLoading(false) 
   }
 

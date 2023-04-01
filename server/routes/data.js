@@ -1,19 +1,20 @@
-import express from "express"
+import express from "express";
+import data from "./placeHolder.json" assert { type: "json" };
 const router = express.Router();
-//const DataPlaceholder = require("./placeHolder.json")
 
-router.route('/').get( async (req,res) => {
-
-    let {email} = req.body;
-    const fuelQuotes = await quoteInfoSchema.find({email:email})
-
-   // fuelQuotes[0].id
-
-    res.json(fuelQuotes)
+router.route('/').get((req,res) => {
+    res.json(data)
 })
 
 // router.route('/').get((req,res) => {  
 //     res.sendStatus(200)
 // })
+
+router.route('/:ID').delete((req,res) => {
+    const { ID } = req.params;
+    delete data[ID]
+    // HERE database queries
+    
+})
 
 export default router
