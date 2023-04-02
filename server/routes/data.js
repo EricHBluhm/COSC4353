@@ -1,7 +1,6 @@
 import express from "express";
 //import data from "./placeHolder.json" assert { type: "json" };
 import mongoose from "mongoose"
-import db from "../app.js"
 const router = express.Router();
 
 router.route('/:ID').get((req,res) => {
