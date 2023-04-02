@@ -9,10 +9,10 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true })
-const db = mongoose.connection
-db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('Connected'))
+// await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true })
+// const db = mongoose.connection
+// db.on('error', (error) => console.error(error))
+// db.once('open', () => console.log('Connected'))
 
 
 const app = express();
