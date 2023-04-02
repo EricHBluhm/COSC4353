@@ -11,7 +11,7 @@ const Register = () => {
         email:"",
         password:"",
         confirmPassword: "",
-        hasAccInfo: false,
+        hasAccInfo:"false",
     })
 
     const navigate = useNavigate()
@@ -52,6 +52,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
+            console.log(values)
             const res = await axios.post("/auth/register", values);
             console.log(res.data)
             navigate("/Login")

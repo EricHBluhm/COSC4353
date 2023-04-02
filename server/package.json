@@ -27,6 +27,7 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.1.7",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "jest": "^29.5.0",

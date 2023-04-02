@@ -17,7 +17,7 @@ const AccRegistration = () => {
         city:"",
         zipcode:"",
         states:"",
-        curUser: currentUser.email,
+        email: currentUser.email,
     })
 
     //with auth context, add email above then delete it later 
@@ -135,13 +135,14 @@ const AccRegistration = () => {
     //     hello : "hello",
     //     pls: "PlEASE"
     // }
-
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
+            console.log("Before accReg post call")
             const res = await axios.post("/auth/accInfo", values);
-            console.log(res.data)
-            console.log(currentUser.email)
+            console.log("after accREg post call")
+            
             navigate("/QuoteHistory")
             //console.log(res.data.hello)
             //console.log(res.data.values.zipcode)

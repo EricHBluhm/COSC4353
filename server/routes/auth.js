@@ -1,5 +1,5 @@
 import express from "express"
-import { login,register,accInfo } from "../controller/auth.js";
+import { login,register,accInfo,logout } from "../controller/auth.js";
 import validate from "../middleware/validate.js";
 import regSchema from "../schemas/regSchema.js";
 import loginSchema from "../schemas/loginSchema.js";
@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.post("/register", validate(regSchema), register) // /server/auth/register
 router.post("/login",  login) // /server/auth/login
+router.post("/logout",  logout) // /server/auth/login
 router.post("/accInfo", validate(accInfoSchema), accInfo) // /server/auth/accInfo
 
 export default router
