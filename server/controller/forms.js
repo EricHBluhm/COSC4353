@@ -1,14 +1,6 @@
 
 import Quote from '../models/quote.js'
 
-let forms = [{
-    email: "blahblah@gmail.com",
-    gallonsRequested: "45",
-    address: "123 Wallaby Way",
-    suggPrice: "435",
-    deliveryDate: "03/15/2023",
-    realPrice: "100"
-}]
 
 export const createForm = async (req, res) =>{
     try{
