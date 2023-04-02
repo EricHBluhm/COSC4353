@@ -10,21 +10,6 @@ import express from "express"
 import MongoClient from "mongodb"
 import {MongoMemoryServer} from "mongodb-memory-server";
 
-const correctRegister ={
-    email:"test2@test.com",
-    password:"Test!1",
-    confirmPassword:"Test!1",
-    hasAccInfo:false
-}
-
-const incorrectRegister ={
-    email:"Billy@bob.com",
-    password:"Test!1",
-    confirmPassword:"Test!1",
-    hasAccInfo:false
-}
-
-
 const userId = new mongoose.Types.ObjectId().toString();
 
 // //super test way
@@ -151,34 +136,3 @@ describe('accInfo', () =>{
     
     });
 })
-
-
-///////////////////////////////////////////////////////
-
-
-// jest.mock('../models/User', () => jest.fn); 
-
-// const requestUserExist ={
-//     body: {
-//         email:"test2@test.com",
-//         password:"Test!1",
-//         confirmPassword:"Test!1",
-//         hasAccinfo: 'false',
-//     },
-// };
-
-
-// const response = { //fake response object
-//     status: jest.fn((x)=> x),
-//     send: jest.fn((x)=>x),
-// }
-
-// it('should send a status code of 400 when user already exists', async () =>{
-//     User.findOne.mockImplementationOnce(()=> ({ //mocking the findOne query
-//         email: 'test@test.com',
-//         password: 'Test!',
-//         hasAccinfo: 'false'
-//     }));
-//     await register(requestUserExist,response);
-//     //expect(response.status).toHaveBeenCalledWith(200);
-// });
