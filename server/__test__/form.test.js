@@ -40,7 +40,7 @@ describe("Post to /quotes/quotform", () =>{
             })
             expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
         })
-        test("response has formId", async () => {
+        test("response declares quote was saved", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
                 gallonsRequested: 45,
                 address: "123 Wallaby Way",
