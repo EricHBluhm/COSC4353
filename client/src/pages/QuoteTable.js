@@ -133,7 +133,7 @@ const customStyles = {
 
   async function fetchTableData(){
     setLoading(true)
-    const URL = "http://localhost:8800/history"
+    const URL = "http://localhost:8800/history/:" + currentUser
     const response = await fetch(URL)
     const users = await response.json()
     setData(users)
