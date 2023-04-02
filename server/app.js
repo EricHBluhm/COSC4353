@@ -2,7 +2,7 @@ import express from "express"
 import AuthRoutes from "./routes/auth.js"
 import quoteRoutes from './routes/form.js'
 import cookieParser from "cookie-parser"
-//import tableRoutes from './routes/data.js'
+import tableRoutes from './routes/data.js'
 import mongoose from "mongoose"
 import cors from 'cors'
 
@@ -11,7 +11,7 @@ const app = express();
 app.use(cors())
 app.use(cookieParser())
 app.use(express.json());
-//app.use("/history", tableRoutes);
+app.use("/history", tableRoutes);
 app.use("/server/auth", AuthRoutes)
 app.use('/server/quotes', quoteRoutes)
 
