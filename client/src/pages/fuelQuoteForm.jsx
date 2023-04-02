@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function App() {
-  const [date, setDate] = useState(new Date());
   const { register, handleSubmit, formState: {errors} } = useForm();
   const {currentUser} = useContext(AuthContext);
   const navigate = useNavigate()

@@ -1,17 +1,13 @@
 
-let forms = [{
-    email: "email@website.com",
-    gallonsRequested: "45",
-    address: "123 Wallaby Way",
-    suggPrice: "435",
-    deliveryDate: "03/15/2023",
-    realPrice: "100"
-}]
+import Quote from '../models/quote.js'
 
-export const createForm = (req, res) =>{
+
+export const createForm = async (req, res) =>{
     try{
-        let newForm = req.body;
-        console.log(newForm);
+        let quote = new Quote(req.body);
+        console.log(quote);
+
+        const newQuote = await quote.save(); 
 
         res.send({formID: 1});
 
