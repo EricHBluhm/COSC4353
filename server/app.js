@@ -26,7 +26,8 @@ app.use('/server/quotes', quoteRoutes)
 main().catch(err => console.log(err));
      
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes');
+    //await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes'); //local server
+    await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority');
 }
 
 

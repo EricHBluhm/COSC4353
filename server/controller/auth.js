@@ -16,13 +16,10 @@ export const register = async (req,res) =>{
         console.log(email)
         const foundUser  = await User.findOne({email:email}); //check to see if user already exists
         
-        //let foundUser = users.find(user => user.email === newUser.email );
         if(!foundUser) //if there is no user with newUser's email, create a new user
         {
             //hash password
-                // const salt = bcrypt.genSaltSync(10);
-                // const hash = bcrypt.hashSync(req.body.password, salt)
-                password = hashPassword(password);
+            password = hashPassword(password);
 
             //create new user for MongoDB
             const newUser = new User({
@@ -31,12 +28,11 @@ export const register = async (req,res) =>{
                 hasAccInfo,
             })
 
-            //users.push(newUser);
             //save newUser to DB
-            const savedUser = await newUser.save();
+            const savedUser = await newUser.save(); //save to User Credential Table
 
             res.status(201);
-            return res.json(savedUser);
+            return res.json(savedUser); //return saved user to frontend
         }
         else
         {
@@ -55,24 +51,18 @@ export const login = async (req,res) =>{
         let currentUser = req.body; //form data
 
         //check to see if user exists
-        //let foundUser = users.find(user => user.email === currentUser.email );
-        const foundUser = await User.findOne({email:currentUser.email}).exec();
-        //const foundUser = await User.findById(currentUser._id).exec();
+        const foundUser = await User.findOne({email:currentUser.email}).exec(); //check to see if user exists
         
-        if(!foundUser)
+        if(!foundUser) //if user doesn't exist
         {
             console.log("User does not exist")
             return res.status(500).json("Account Does Not Exist")
         }
 
         //check to see if password matches
-            //const isPasswordCorrect = bcrypt.compareSync(currentUser.password,foundUser.password )
-            
-            const isPasswordCorrect = comparePassword(currentUser.password,foundUser.password)
-            //if(!isPasswordCorrect)
+         const isPasswordCorrect = comparePassword(currentUser.password,foundUser.password)
 
-        // if(currentUser.password != foundUser.password)
-        if(!isPasswordCorrect)
+        if(!isPasswordCorrect) //if password is incorrect
         {
             console.log("Password is incorrect")
             return res.status(500).json("Password is incorrect")
@@ -88,8 +78,6 @@ export const login = async (req,res) =>{
         })
         res.status(201).json(foundUser)
 
-        //send user back to frontEnd so we can see if userAcc is true or false
-        //res.json(foundUser)
     }catch(err){
         res.status(500).json(err);
     }
@@ -100,17 +88,14 @@ export const accInfo = async (req,res) =>{
     try{
         let {fullName,address1,address2,city,zipcode,states,email} = req.body;
 
-        //let foundUser = users.find(user => user.email === curUser );
-        const foundUser = await User.findOne({email:email}).exec();
+        const foundUser = await User.findOne({email:email}).exec(); //check to see if user exists
         if(!foundUser)
         {
             console.log("User does not exist")
             return res.status(500).json("Account Does Not Exist")
         }
 
-        //const updateUser = await User.findOneAndUpdate(email:)
-
-        console.log("creating new user info table")
+        //creating new user info entry
         const newUserInfo = new UserInfo({
             email,
             fullName,
@@ -122,22 +107,9 @@ export const accInfo = async (req,res) =>{
         })
 
         //update User to have accountInfo
-        await User.findOneAndUpdate({email:email}, {hasAccInfo: "true"})
-        // foundUser.fullname = fullName;
-        // foundUser.address1 = address1;
-        // foundUser.address2 = address2;
-        // foundUser.city = city;
-        // foundUser.zipcode = zipcode;
-        // foundUser.state = states;
-        // foundUser.userInfo = true;
+        await User.findOneAndUpdate({email:email}, {hasAccInfo: "true"}) //updating User Credentials Table
 
-        //update with values from currentUser
-
-        console.log("creating new user info table2")
-
-        const savedUserInfo = await newUserInfo.save();
-
-        console.log("creating new user info table")
+        const savedUserInfo = await newUserInfo.save(); //saving new Client Information entry
 
         res.status(201).json(savedUserInfo);
 
@@ -147,6 +119,7 @@ export const accInfo = async (req,res) =>{
   
 }
 
+//logout module, not connected yet
 export const logout = (req,res) => {
             res.clearCookies("access_token",{
                 sameSite:"none",
