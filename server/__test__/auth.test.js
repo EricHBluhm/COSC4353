@@ -95,7 +95,7 @@ describe('register', () =>{
     it('returns status code 201 if new user created', async () =>{
         const res = await supertest(app).post('/server/auth/register').send({
             _id:userId,
-            email:"jest6@test.com",
+            email:"jest7@test.com",
             password:"Test!1",
             confirmPassword:"Test!1",
             hasAccInfo: "false"
