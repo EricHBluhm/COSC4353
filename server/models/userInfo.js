@@ -43,7 +43,6 @@ const UserInfoSchema = new mongoose.Schema( //schema for mongoose
     },
 );
 
-const UserInfo = mongoose.model("UserInfo", UserInfoSchema) //create mongoose schema first (above), then pass into mongoose.model, into "User" schema in database
+const UserInfo = mongoose.model("UserInfo", UserInfoSchema) 
 export default UserInfo; //exports schema
 
-//function to do user registration in server/controllers/auth.js
