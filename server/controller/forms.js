@@ -9,7 +9,7 @@ export const createForm = async (req, res) =>{
 
         const newQuote = await quote.save(); 
 
-        res.send({formID: 1});
+        res.send("Quote Saved.");
 
     }catch(err){
         res.json("Error found.")
