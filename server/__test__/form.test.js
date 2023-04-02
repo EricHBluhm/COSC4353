@@ -20,33 +20,33 @@ describe("Post to /quotes/quotform", () =>{
         //should respond with 200, success
         test("should respond with 200", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
-                gallonsRequested: "45",
+                gallonsRequested: 45,
                 address: "123 Wallaby Way",
-                suggPrice: "435",
+                suggPrice: 435,
                 deliveryDate: "03/15/2023",
-                realPrice: "100",
+                realPrice: 100,
                 email: "unittest@test.com"
             })
             expect(response.statusCode).toBe(200)
         })
         test("should specify that it is json content", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
-                gallonsRequested: "45",
+                gallonsRequested: 45,
                 address: "123 Wallaby Way",
-                suggPrice: "435",
+                suggPrice: 435,
                 deliveryDate: "03/15/2023",
-                realPrice: "100",
+                realPrice: 100,
                 email: "unittest@test.com"
             })
             expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
         })
-        test("response says form was saved", async () => {
+        test("response has formId", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
-                gallonsRequested: "45",
+                gallonsRequested: 45,
                 address: "123 Wallaby Way",
-                suggPrice: "435",
+                suggPrice: 435,
                 deliveryDate: "03/15/2023",
-                realPrice: "100",
+                realPrice: 100,
                 email: "unittest@test.com"
             })
             expect(response.body).toBeDefined()
@@ -68,14 +68,15 @@ describe("Post to /quotes/quotform", () =>{
         
         test("should return 400, user error", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
-                gallonsRequested: "hello",
-                address: "123",
-                suggPrice: "Alabama",
-                deliveryDate: "73rd of octobruary",
-                realPrice: "fake",
-                email: "unittest@db.com"
+                gallonsRequested: -45, //gallonsRequested CANNOT be negative
+                address: "123 Wallaby Way",
+                suggPrice: 435,
+                deliveryDate: "03/15/2023",
+                realPrice: 100,
+                email: "unittest@test.com"
             })
             expect(response.statusCode).toBe(400)
     })
 
 }) 
+
