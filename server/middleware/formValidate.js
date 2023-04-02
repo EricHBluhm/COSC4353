@@ -9,7 +9,7 @@ function validate(schema) {
             next()
              
         } catch(err) {
-            console.log("nope")
+            res.status(400)
             next()
 
         }

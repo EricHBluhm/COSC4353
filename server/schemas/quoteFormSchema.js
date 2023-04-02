@@ -6,6 +6,7 @@ let quoteInfoSchema = yup.object().shape({
     deliveryDate: yup.date().required(),
     suggPrice: yup.number().required().positive(),
     realPrice: yup.number().required().positive().default(100),
+    email : yup.string().min(5).max(50).required()
 });
 
 
