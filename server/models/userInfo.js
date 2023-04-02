@@ -7,6 +7,7 @@ const UserInfoSchema = new mongoose.Schema( //schema for mongoose
             type: String,
             required: true,
             max: 50,
+            unique: true,
         },
         fullName: {
             type: String, //string

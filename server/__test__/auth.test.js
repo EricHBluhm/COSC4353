@@ -25,53 +25,15 @@ const incorrectRegister ={
 }
 
 
-// describe('insert', () => {
-//     let connection;
-//     let db;
-  
-//     beforeAll(async () => {
-//       connection = await MongoClient.connect(global.__MONGO_URI__, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//       });
-//       db = await connection.db();
-//     });
-  
-//     afterAll(async () => {
-//       await connection.close();
-//     });
-
-
-//   it('should insert a doc into collection', async () => {
-//     const users = db.collection('users');
-  
-//     const mockUser = {_id: 'some-user-id', name: 'John'};
-//     await users.insertOne(mockUser);
-  
-//     const insertedUser = await users.findOne({_id: 'some-user-id'});
-//     expect(insertedUser).toEqual(mockUser);
-//   });
-
-// });
-
-
 const userId = new mongoose.Types.ObjectId().toString();
 
 // //super test way
 describe('register', () =>{
 
-    // beforeAll(async () => {
-    //     await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes');
-    // });
-
-    // afterAll( async () => {
-    //     await mongoose.disconnect();
-    // });
-
 
     beforeAll(async () => {
         const mongoServer = await MongoMemoryServer.create()
-        await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes')
+        await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority')
     });
 
     afterAll( async () => {
@@ -95,7 +57,7 @@ describe('register', () =>{
     it('returns status code 201 if new user created', async () =>{
         const res = await supertest(app).post('/server/auth/register').send({
             _id:userId,
-            email:"jest7@test.com",
+            email:"jest3@test.com",
             password:"Test!1",
             confirmPassword:"Test!1",
             hasAccInfo: "false"
@@ -109,7 +71,7 @@ describe('login', () =>{
 
     beforeAll(async () => {
         const mongoServer = await MongoMemoryServer.create()
-        await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes')
+        await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority')
     });
 
     afterAll( async () => {
@@ -138,8 +100,8 @@ describe('login', () =>{
 
     it('returns status code 200 if token is created and user logged in', async () =>{
         const res = await supertest(app).post('/server/auth/login').send({
-            email:"Billy@bob.com",
-            password:"Test!1",
+            email:"test2@test.com",
+            password:"TEst!1",
         });
         expect(res.statusCode).toEqual(201)
     
@@ -150,7 +112,7 @@ describe('accInfo', () =>{
 
     beforeAll(async () => {
         const mongoServer = await MongoMemoryServer.create()
-        await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes')
+        await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority')
     });
 
     afterAll( async () => {
@@ -183,7 +145,7 @@ describe('accInfo', () =>{
             city:"Test!1",
             zipcode:"47383",
             states: "TX",
-            email: "test@test.com"
+            email: "jest3@test.com"
         });
         expect(res.statusCode).toEqual(201)
     
