@@ -9,7 +9,7 @@ router.route('/:ID').get( async (req,res) => {
     ID = ID.substring(1)
     let quotes = []
    console.log(ID)
-    quotes = await Quote.find({email:ID})
+    quotes = await Quote.find({ email: ID }, { realPrice:1, suggPrice: 1, deliveryDate: 1, address: 1, gallonsRequested:1 })
 
     // mongoose.connection.db.collection('quotes')
     //     .find({ email: id }, { realPrice:1, suggPrice: 1, deliveryDate: 1, address: 1, gallonsRequested:1 })

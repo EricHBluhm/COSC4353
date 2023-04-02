@@ -20,18 +20,13 @@ export default function QuoteTable() {
 
   const columns = [
     {
-      name: "ID Quote",
-      selector: (row) => row.ID,
-      sortable: true,
-    },
-    {
       name: "Gallons Requested",
       selector: (row) => row.gallonsRequested,
       sortable: true,
     },
     {
       name: "Delivery Address",
-      selector: (row) => row.deliveryAddress,
+      selector: (row) => row.address,
       sortable: true,
     },
     {
@@ -41,12 +36,12 @@ export default function QuoteTable() {
     },
     {
       name: "Suggested Price",
-      selector: (row) => row.suggestedPrice,
+      selector: (row) => row.suggPrice,
       sortable: true,
     },
     {
       name : "Total Amount Due",
-      selector: (row) => row.totalAmountDue,
+      selector: (row) => row.realPrice,
       sortable: true
     },
   ]
