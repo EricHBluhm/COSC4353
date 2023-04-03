@@ -42,7 +42,7 @@ describe('register', () =>{
     it('returns status code 201 if new user created', async () =>{
         const res = await supertest(app).post('/server/auth/register').send({
             _id:userId,
-            email:"jest3@test.com",
+            email:"jest5@test.com",
             password:"Test!1",
             confirmPassword:"Test!1",
             hasAccInfo: "false"
@@ -130,7 +130,7 @@ describe('accInfo', () =>{
             city:"Test!1",
             zipcode:"47383",
             states: "TX",
-            email: "jest3@test.com"
+            email: "jest5@test.com"
         });
         expect(res.statusCode).toEqual(201)
     

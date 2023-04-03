@@ -10,22 +10,21 @@ router.route('/:ID').get( async (req,res) => {
     let quotes = []
     console.log(ID)
 
-    const foundUser = await Quote
-        .findOne({ email: ID} ).exec(); //check to see if user exists
+    quotes = await Quote.find({ email: ID} ); //check to see if user exists
 
-    if(!foundUser) //if user doesn't exist
-    {
-            console.log("Not email for this quote request.")
-            return res.status(501).json('Could not fetch the documents.')
-    }
-    else{
+    // if(!foundUser) //if user doesn't exist
+    // {
+    //         console.log("Not email for this quote request.")
+    //         return res.status(501).json('Could not fetch the documents.')
+    // }
+    // else{
 
-        quotes = await Quote
-            .find({ email: ID }, { realPrice:1, suggPrice: 1, deliveryDate: 1, address: 1, gallonsRequested:1 })
-            .sort({ deliveryDate : 1})
-            .then(() => {
-                res.status(201);
-            })
+    //     quotes = await Quote
+    //         .find({ email: ID }, { realPrice:1, suggPrice: 1, deliveryDate: 1, address: 1, gallonsRequested:1 })
+    //         .sort({ deliveryDate : 1})
+    //         .then(() => {
+    //             res.status(201);
+    //         })
         
 
         // mongoose.connection.db.collection('quotes')
@@ -42,7 +41,7 @@ router.route('/:ID').get( async (req,res) => {
             // res.json({mssg: 'welcome to the api'})
 
         return res.json(quotes); //return saved user to frontend
-    }
+    //}
 })
 
 // router.route('/:ID').delete((req,res) => {

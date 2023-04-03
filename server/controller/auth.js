@@ -13,7 +13,6 @@ export const register = async (req,res) =>{
             hasAccInfo,
         }  = req.body;
 
-        console.log(email)
         const foundUser  = await User.findOne({email:email}); //check to see if user already exists
         
         if(!foundUser) //if there is no user with newUser's email, create a new user
@@ -51,7 +50,7 @@ export const login = async (req,res) =>{
         let currentUser = req.body; //form data
 
         //check to see if user exists
-        const foundUser = await User.findOne({email:currentUser.email}).exec(); //check to see if user exists
+        const foundUser = await User.findOne({email:currentUser.email}).exec(); 
         
         if(!foundUser) //if user doesn't exist
         {
@@ -91,7 +90,6 @@ export const accInfo = async (req,res) =>{
         const foundUser = await User.findOne({email:email}).exec(); //check to see if user exists
         if(!foundUser)
         {
-            console.log("User does not exist")
             return res.status(500).json("Account Does Not Exist")
         }
 
