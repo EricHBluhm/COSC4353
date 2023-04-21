@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/register";
 import QuoteForm from "./pages/fuelQuoteForm"
 import QuoteHistory from "./pages/quoteHistory"
+import QuoteForm2 from "./pages/QuoteForm"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Login />}/>
           <Route path="/Register" element={<Register />}/>
           <Route path="/QuoteForm" element={<QuoteForm />}/>
+          <Route path="/QuoteForm2" element={<QuoteForm2 />}/>
           <Route path="/QuoteHistory" element={<QuoteHistory />}/>
         </Routes>
     </Router>
