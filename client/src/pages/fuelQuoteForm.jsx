@@ -12,9 +12,12 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function App() {
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const { register, handleSubmit, formState: {errors}, watch } = useForm();
   const {currentUser} = useContext(AuthContext);
   const navigate = useNavigate()
+
+  console.log(watch('gallonsRequested'))
+  let suggestedPrice = 1.5 * watch('gallonsRequested');
 
   
   return (
@@ -33,6 +36,7 @@ export default function App() {
             try{
               let values = data;
               values.email = currentUser.email;
+              values.realPrice = suggestedPrice;
 
               const res = await axios.post("/quotes/quoteForm", values);
               console.log(values);
@@ -59,7 +63,7 @@ export default function App() {
             <p>{errors.suggPrice?.message}</p>
   
             <label>Total price: </label>
-            <input {...register("realPrice", {required: 'A valid monetary value is required.'})} placeholder="ex. 65" />
+            <input {...register("realPrice", {required: 'A valid monetary value is required.'})} value = { suggestedPrice } placeholder="ex. 65"/>
             <p>{errors.realPrice?.message}</p>
   
             <input type = "submit" />
