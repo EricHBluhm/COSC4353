@@ -11,20 +11,39 @@ const QuoteForm = () => {
     const {currentUser} = useContext(AuthContext); //lets us get currentUser info
 
 
-    useEffect= async (e) => {
-        e.preventDefault();
-        try{
-            console.log("Before accReg post call")
-            const res = await axios.post("/auth/accInfo", values);
-            console.log(values)
-            
-            //navigate("/QuoteHistory")
-            //console.log(res.data.hello)
-            //console.log(res.data.values.zipcode)
-        }catch (err){
-            console.log(err)
-        }
-    };
+    useEffect(()=> {
+        const fetchData = async (e) => {
+            try{
+                console.log("Before accReg post call")
+                const res = await axios.get("/form/getUserInfo/" + currentUser.email);
+                console.log(res.data.fullName)
+                
+                //navigate("/QuoteHistory")
+                //console.log(res.data.hello)
+                //console.log(res.data.values.zipcode)
+            }catch (err){
+                console.log(err)
+            }
+        };
+        fetchData();
+    },[]);
+       
+    // useEffect(() => {
+    //     fetchTableData()
+    //   }, [])
+      
+    //   async function fetchTableData(){
+   
+    //     console.log(currentUser.email)
+    //     const URL = "http://localhost:8800/server/getUserInfo/:" + currentUser.email
+    //     const response = await fetch(URL)
+    //     const res = response.json()
+    //     //setData(users)
+    //     console.log(res);
+    //     console.log("sdfsdf")
+     
+ 
+    //   }
 
 
     const [values, setValues] = useState({
@@ -110,7 +129,6 @@ const QuoteForm = () => {
         try{
             console.log("Before accReg post call")
            // const res = await axios.post("/auth/accInfo", values);
-            console.log(values)
             
             //navigate("/QuoteHistory")
             //console.log(res.data.hello)

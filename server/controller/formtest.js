@@ -7,14 +7,13 @@ import User from "../models/User.js";
 import Quote from "../models/quote.js"
 
 export const getUserInfo = async (req,res) =>{
-    // let { ID } = req.params
-    // ID = ID.substring(1)
-    // let quotes = []
-    // console.log(ID)
+    let { ID } = req.params
+    //ID = ID.substring(1)
+    console.log(ID)
 
-    let {email} = req.body
+    // //let {email} = req.body
 
-    const foundUser = await User.findOne({email:email}).exec(); 
+    const foundUser = await User.findOne({email:ID}).exec(); 
         
 
     if(!foundUser) //if user doesn't exist
@@ -23,11 +22,12 @@ export const getUserInfo = async (req,res) =>{
             return res.status(501).json('Could not fetch the documents.')
     }
     else{
-        let userInfos = await UserInfo.find({ email: email} ); //check to see if user exists
+        let userInfos = await UserInfo.findOne({ email: ID} ); //check to see if user exists
     
         res.status(201);
         return res.json(userInfos); //return saved user to frontend
     }
+    //return res.json("hi from formtest controller")
 }
 
 export const checkHistory = async (req,res) =>{
