@@ -63,7 +63,6 @@ const QuoteForm = () => {
         totalAmount:"",
     })
 
-    console.log("Are we in Texas? " + userVal.locationFactor + " ")
     console.log("Current address is " + userVal.deliveryAddress + " ")
 
  
@@ -151,8 +150,8 @@ const QuoteForm = () => {
         let suggestPrice = ppGallon + margin
         let amountDue = Number(values.gallonsRequested) * suggestPrice;
 
-        setValues({...values, suggestedPrice: String(suggestPrice), totalAmount:String(amountDue)})
-        console.log(values)
+        setValues({...values, suggestedPrice: "$" + String(suggestPrice), totalAmount: "$" + String(amountDue)})
+        //console.log(values)
     }
 
     const handleSubmit = async (e) => {
