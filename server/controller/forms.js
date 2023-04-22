@@ -5,8 +5,9 @@ import Quote from '../models/quote.js'
 
 export const createForm = async (req, res) =>{
     try{
+        console.log(req.body)
         let quote = new Quote(req.body);
-        console.log(quote);
+        //console.log(quote);
 
         const newQuote = await quote.save(); 
 

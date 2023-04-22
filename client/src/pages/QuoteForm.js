@@ -11,8 +11,8 @@ const QuoteForm = () => {
 
     const {currentUser} = useContext(AuthContext); //lets us get currentUser info
 
-    const [userVal, setUserVal] = useState({
-        deliveryAddress:"",
+    const [userVal, setUserVal] = useState({ //user values from backend
+        address:"",
         locationFactor: 0,
         historyFactor: 0,
     })
@@ -21,27 +21,20 @@ const QuoteForm = () => {
     useEffect(()=> {
         const fetchData = async (e) => {
             try{
-                console.log("Before accReg post call")
+
                 const res = await axios.get("/form/getUserInfo/" + currentUser.email);
+               
                 let userInfo = res.data;
                 let isTexas = 0.04;
                 let deliveryAdd = userInfo.address1 + ", " + userInfo.address2 + ", " + userInfo.city + ", " + userInfo.states + ", " + userInfo.zipcode
                 if(userInfo.states === "TX")
                     isTexas  = 0.02;
                 
-                //let history = "false";
                 const hasHistory = await axios.get("/form//checkHistory/" + currentUser.email);
-
-                //console.log("Is there history?" + hasHistory.data) 
-
-
-                setUserVal({deliveryAddress:deliveryAdd, locationFactor:isTexas, historyFactor:hasHistory.data})
-                setValues(prev=>({...prev, deliveryAddress:userVal.deliveryAddress}))
+               
+                setUserVal({address:deliveryAdd, locationFactor:isTexas, historyFactor:hasHistory.data})
+                //setValues(prev=>({...prev, address:userVal.address}))
         
-                
-                //navigate("/QuoteHistory")
-                //console.log(res.data.hello)
-                //console.log(res.data.values.zipcode)
             }catch (err){
                 console.log(err)
             }
@@ -50,20 +43,18 @@ const QuoteForm = () => {
     },[]);
 
     useEffect(() => {
-        setValues(prev=>({...prev, deliveryAddress:userVal.deliveryAddress}))
+        setValues(prev=>({...prev, address:userVal.address}))
     }, [userVal]); //calls this when UserVal is changed, so it should put it in the input after the first useEfect
 
-
-
-    const [values, setValues] = useState({
-        gallonsRequested:"",
-        deliveryAddress: "",
+    const [values, setValues] = useState({ //values for form
+        gallonsRequested:0,
+        address: "",
         deliveryDate:"",
-        suggestedPrice:"",
-        totalAmount:"",
+        suggPrice:0,
+        realPrice:0,
     })
 
-    console.log("Current address is " + userVal.deliveryAddress + " ")
+    console.log("Current address is " + userVal.address + " ")
 
  
 
@@ -73,8 +64,8 @@ const QuoteForm = () => {
         {
             id:1,
             name:"gallonsRequested",
-            type:"text",
-            placeholder:"0",
+            type:"number",
+            //placeholder:"0",
             //errorMessage:"Invalid name.",
             label:"Number of Gallons",
             //pattern: "^[a-zA-Z_][a-zA-Z_ ]*[a-zA-Z_]{2,50}$",
@@ -82,19 +73,19 @@ const QuoteForm = () => {
         },
         {
             id:2,
-            name:"deliveryAddress",
+            name:"address",
             type:"text",
             //placeholder:" ",
             //errorMessage:"Enter Valid Address",
             label:"Delivery Address",
             //pattern: "^[a-zA-Z0-9_][a-zA-Z0-9_ ]*[a-zA-Z0-9_]$",
             required: true,
-            //readOnly: true,
+            readOnly: true,
         },
         {
             id:3,
             name:"deliveryDate",
-            type:"date",
+            type:"Date",
             placeholder:"mm/dd/yyyy",
             //errorMessage:"",
             label:"Desired Delivery Date",
@@ -103,9 +94,9 @@ const QuoteForm = () => {
         },
         {
             id:4,
-            name:"suggestedPrice",
-            type:"text",
-            placeholder:"0",
+            name:"suggPrice",
+            type:"number",
+           // placeholder:"0",
             //errorMessage:"Invalid City Name. Text Only.",
             label:"Suggested Rate",
             //pattern: "^[a-zA-Z ]{2,100}$",
@@ -114,9 +105,9 @@ const QuoteForm = () => {
         },
         {
             id:5,
-            name:"totalAmount",
-            type:"text",
-            placeholder:"0",
+            name:"realPrice",
+            type:"number",
+           // placeholder:"0",
             errorMessage:"Invalid Zipcode. 5-8 Numbers.",
             label:"Total Price",
             //pattern: "^[0-9]{5,8}$",
@@ -124,12 +115,6 @@ const QuoteForm = () => {
             readOnly: true,
         }
     ]
-
-
-    // let testing = {
-    //     hello : "hello",
-    //     pls: "PlEASE"
-    // }
    
     const PriceModule = (e) => {
         e.preventDefault();
@@ -139,7 +124,7 @@ const QuoteForm = () => {
         let grFactor = 0.03; //gallons requested Factor
         let profitFactor = 0.1; //company profit factor
 
-        if (Number(values.gallonsRequested) >= 1000) //if requested more than 1000 gallons, decrease grFactor
+        if (values.gallonsRequested >= 1000) //if requested more than 1000 gallons, decrease grFactor
             grFactor = 0.02;
 
         console.log("grFactor = " + grFactor)
@@ -148,19 +133,21 @@ const QuoteForm = () => {
 
         let margin = ppGallon * (userVal.locationFactor - userVal.historyFactor + grFactor + profitFactor);
         let suggestPrice = ppGallon + margin
-        let amountDue = Number(values.gallonsRequested) * suggestPrice;
+        let amountDue = values.gallonsRequested * suggestPrice;
 
-        setValues({...values, suggestedPrice: "$" + String(suggestPrice), totalAmount: "$" + String(amountDue)})
-        //console.log(values)
+        setValues({...values, suggPrice: suggestPrice, realPrice: amountDue})
+
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            console.log("Before accReg post call")
-           // const res = await axios.post("/auth/accInfo", values);
-            
-            //navigate("/QuoteHistory")
+            values.gallonsRequested = Number(values.gallonsRequested)
+            values.email = currentUser.email;
+            console.log(values)
+            const res = await axios.post("/quotes/quoteForm", values);
+        
+            navigate("/QuoteHistory")
             //console.log(res.data.hello)
             //console.log(res.data.values.zipcode)
         }catch (err){
