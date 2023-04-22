@@ -10,14 +10,31 @@ const QuoteForm = () => {
 
     const {currentUser} = useContext(AuthContext); //lets us get currentUser info
 
+    const [userVal, setUserVal] = useState({
+        deliveryAddress:"",
+        isTexas: "false",
+        hasHistory: "false",
+    })
+
 
     useEffect(()=> {
         const fetchData = async (e) => {
             try{
                 console.log("Before accReg post call")
                 const res = await axios.get("/form/getUserInfo/" + currentUser.email);
-                console.log(res.data.fullName)
+                let userInfo = res.data;
+                let texas = "false";
+                let deliveryAdd = userInfo.address1 + ", " + userInfo.address2 + ", " + userInfo.city + ", " + userInfo.states + ", " + userInfo.zipcode
+                if(userInfo.states === "TX")
+                    texas = "true";
                 
+                let history = "false";
+                // const hasHistory = await axios.get("/form//checkHistory/" + currentUser.email);
+
+                // if 
+
+
+                setUserVal({deliveryAddress:deliveryAdd, isTexas:texas, hasHistory:history})
                 //navigate("/QuoteHistory")
                 //console.log(res.data.hello)
                 //console.log(res.data.values.zipcode)
@@ -28,6 +45,8 @@ const QuoteForm = () => {
         fetchData();
     },[]);
        
+    console.log("Current history is " + userVal.isTexas + " ")
+
     // useEffect(() => {
     //     fetchTableData()
     //   }, [])
