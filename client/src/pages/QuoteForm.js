@@ -28,13 +28,14 @@ const QuoteForm = () => {
                 if(userInfo.states === "TX")
                     texas = "true";
                 
-                let history = "false";
-                // const hasHistory = await axios.get("/form//checkHistory/" + currentUser.email);
+                //let history = "false";
+                const hasHistory = await axios.get("/form//checkHistory/" + currentUser.email);
 
-                // if 
+                //console.log("Is there history?" + hasHistory.data) 
 
 
-                setUserVal({deliveryAddress:deliveryAdd, isTexas:texas, hasHistory:history})
+                setUserVal({deliveryAddress:deliveryAdd, isTexas:texas, hasHistory:hasHistory.data})
+                setValues(prev=>({...prev, deliveryAddress:userVal.deliveryAddress}))
                 //navigate("/QuoteHistory")
                 //console.log(res.data.hello)
                 //console.log(res.data.values.zipcode)
@@ -45,29 +46,12 @@ const QuoteForm = () => {
         fetchData();
     },[]);
        
-    console.log("Current history is " + userVal.isTexas + " ")
-
-    // useEffect(() => {
-    //     fetchTableData()
-    //   }, [])
-      
-    //   async function fetchTableData(){
-   
-    //     console.log(currentUser.email)
-    //     const URL = "http://localhost:8800/server/getUserInfo/:" + currentUser.email
-    //     const response = await fetch(URL)
-    //     const res = response.json()
-    //     //setData(users)
-    //     console.log(res);
-    //     console.log("sdfsdf")
-     
- 
-    //   }
-
+    console.log("Are we in Texas? " + userVal.isTexas + " ")
+    console.log("Current address is " + userVal.deliveryAddress + " ")
 
     const [values, setValues] = useState({
         gallonsRequested:"",
-        deliveryAddress:"",
+        deliveryAddress: "userVal.deliveryAddress",
         deliveryDate:"",
         suggestedPrice:"",
         totalAmount:"",
@@ -90,11 +74,12 @@ const QuoteForm = () => {
             id:2,
             name:"deliveryAddress",
             type:"text",
-            placeholder:" ",
+            //placeholder:" ",
             //errorMessage:"Enter Valid Address",
             label:"Delivery Address",
             //pattern: "^[a-zA-Z0-9_][a-zA-Z0-9_ ]*[a-zA-Z0-9_]$",
             required: true,
+            readOnly: true,
         },
         {
             id:3,

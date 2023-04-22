@@ -31,23 +31,20 @@ export const getUserInfo = async (req,res) =>{
 }
 
 export const checkHistory = async (req,res) =>{
-    // let { ID } = req.params
-    // ID = ID.substring(1)
-    // let quotes = []
-    // console.log(ID)
+    let { ID } = req.params //get the id
+    console.log(ID)
 
-    let {email} = req.body
+    // //let {email} = req.body
 
-    const foundUser = await User.findOne({email:email}).exec(); 
-        
-
+    const foundUser = await User.findOne({email:ID}).exec(); //check to see if user exists
     if(!foundUser) //if user doesn't exist
     {
             console.log("Not email for this quote request.")
             return res.status(501).json('Could not fetch the documents.')
     }
     else{
-        let history = await Quote.findOne({ email: email} ); //check to see if user exists
+
+        let history = await Quote.findOne({ email: ID} ); //check to see if user has quote history
         let ifHistory = "false";
         if(history)
         {
