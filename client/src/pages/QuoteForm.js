@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import axios from "axios";
 import { AuthContext } from '../context/authContext';
+import { useForm } from "react-hook-form";
 
 const QuoteForm = () => {
 
@@ -12,8 +13,8 @@ const QuoteForm = () => {
 
     const [userVal, setUserVal] = useState({
         deliveryAddress:"",
-        isTexas: "false",
-        hasHistory: "false",
+        locationFactor: 0,
+        historyFactor: 0,
     })
 
 
@@ -23,10 +24,10 @@ const QuoteForm = () => {
                 console.log("Before accReg post call")
                 const res = await axios.get("/form/getUserInfo/" + currentUser.email);
                 let userInfo = res.data;
-                let texas = "false";
+                let isTexas = 0.04;
                 let deliveryAdd = userInfo.address1 + ", " + userInfo.address2 + ", " + userInfo.city + ", " + userInfo.states + ", " + userInfo.zipcode
                 if(userInfo.states === "TX")
-                    texas = "true";
+                    isTexas  = 0.02;
                 
                 //let history = "false";
                 const hasHistory = await axios.get("/form//checkHistory/" + currentUser.email);
@@ -34,8 +35,10 @@ const QuoteForm = () => {
                 //console.log("Is there history?" + hasHistory.data) 
 
 
-                setUserVal({deliveryAddress:deliveryAdd, isTexas:texas, hasHistory:hasHistory.data})
+                setUserVal({deliveryAddress:deliveryAdd, locationFactor:isTexas, historyFactor:hasHistory.data})
                 setValues(prev=>({...prev, deliveryAddress:userVal.deliveryAddress}))
+        
+                
                 //navigate("/QuoteHistory")
                 //console.log(res.data.hello)
                 //console.log(res.data.values.zipcode)
@@ -45,17 +48,25 @@ const QuoteForm = () => {
         };
         fetchData();
     },[]);
-       
-    console.log("Are we in Texas? " + userVal.isTexas + " ")
-    console.log("Current address is " + userVal.deliveryAddress + " ")
+
+    useEffect(() => {
+        setValues(prev=>({...prev, deliveryAddress:userVal.deliveryAddress}))
+    }, [userVal]); //calls this when UserVal is changed, so it should put it in the input after the first useEfect
+
+
 
     const [values, setValues] = useState({
         gallonsRequested:"",
-        deliveryAddress: "userVal.deliveryAddress",
+        deliveryAddress: "",
         deliveryDate:"",
         suggestedPrice:"",
         totalAmount:"",
     })
+
+    console.log("Are we in Texas? " + userVal.locationFactor + " ")
+    console.log("Current address is " + userVal.deliveryAddress + " ")
+
+ 
 
     const navigate = useNavigate()
 
@@ -79,7 +90,7 @@ const QuoteForm = () => {
             label:"Delivery Address",
             //pattern: "^[a-zA-Z0-9_][a-zA-Z0-9_ ]*[a-zA-Z0-9_]$",
             required: true,
-            readOnly: true,
+            //readOnly: true,
         },
         {
             id:3,
@@ -100,6 +111,7 @@ const QuoteForm = () => {
             label:"Suggested Rate",
             //pattern: "^[a-zA-Z ]{2,100}$",
             required: true,
+            readOnly: true,
         },
         {
             id:5,
@@ -110,6 +122,7 @@ const QuoteForm = () => {
             label:"Total Price",
             //pattern: "^[0-9]{5,8}$",
             required: true,
+            readOnly: true,
         }
     ]
 
@@ -123,8 +136,22 @@ const QuoteForm = () => {
         e.preventDefault();
         //setValues(values.gallonsRequested =  "30")
 
+        let ppGallon = 1.5; //price per gallon
+        let grFactor = 0.03; //gallons requested Factor
+        let profitFactor = 0.1; //company profit factor
 
-        setValues({...values, gallonsRequested: "30"})
+        if (Number(values.gallonsRequested) >= 1000) //if requested more than 1000 gallons, decrease grFactor
+            grFactor = 0.02;
+
+        console.log("grFactor = " + grFactor)
+        console.log("location factor = " + userVal.locationFactor)
+        console.log("history Factor = " + userVal.historyFactor)
+
+        let margin = ppGallon * (userVal.locationFactor - userVal.historyFactor + grFactor + profitFactor);
+        let suggestPrice = ppGallon + margin
+        let amountDue = Number(values.gallonsRequested) * suggestPrice;
+
+        setValues({...values, suggestedPrice: String(suggestPrice), totalAmount:String(amountDue)})
         console.log(values)
     }
 

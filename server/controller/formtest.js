@@ -45,10 +45,10 @@ export const checkHistory = async (req,res) =>{
     else{
 
         let history = await Quote.findOne({ email: ID} ); //check to see if user has quote history
-        let ifHistory = "false";
+        let ifHistory = 0;
         if(history)
         {
-            ifHistory = "true";
+            ifHistory = 0.01;
         }
 
         res.status(201);
