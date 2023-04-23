@@ -16,8 +16,14 @@ export default function App() {
   const {currentUser} = useContext(AuthContext);
   const navigate = useNavigate()
 
-  console.log(watch('gallonsRequested'))
-  let suggestedPrice = 1.5 * watch('gallonsRequested');
+  let numGallons = watch('gallonsRequested');
+  let suggestedPrice = 0;
+
+  function getPrices(){
+    suggestedPrice = 1.5 * numGallons;
+    console.log(suggestedPrice);
+  }
+
 
   
   return (
@@ -56,6 +62,8 @@ export default function App() {
   
           <label>Desired Delivery Date: </label>
           <input {...register("deliveryDate", {required: 'A valid date is required.'})} type="date" minLength="5" placeholder="3/14/53"/>
+          <Button onClick = {getPrices}> Get Prices </Button>
+
 
           <div className = "bottomForm">
             <label>Suggested Rate: </label>
