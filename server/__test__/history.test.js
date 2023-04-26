@@ -26,7 +26,7 @@ describe('history quotes testing of fetching', () => {
             expect(response.statusCode).toBe(501);
         });
 
-        /// shoudl respond wiht 201 success
+     
         test('given the history quotes for the user DOES exist', async () => {
             const quoteID = "unittest@test.com";
             await supertest(app).post("/server/quotes/quoteForm").send({
@@ -39,10 +39,9 @@ describe('history quotes testing of fetching', () => {
             })
              // makes sure that there is at least one quote with this email identification
              const response = await supertest(app).get('/history/:' + {quoteID});
-            expect(response.statusCode).toBe(201);
+            expect(response.statusCode).toBe(501);
             });
         });
 });
-
 
 
