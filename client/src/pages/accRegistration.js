@@ -131,10 +131,6 @@ const AccRegistration = () => {
     ];
 
 
-    // let testing = {
-    //     hello : "hello",
-    //     pls: "PlEASE"
-    // }
    
     const handleSubmit = async (e) => {
         e.preventDefault();
