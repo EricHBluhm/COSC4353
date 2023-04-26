@@ -5,7 +5,7 @@ import quoteValidation from '../middleware/formValidate.js'
 
 const router = express.Router();
 
-router.get("/getUserInfo/:ID",  getUserInfo) // /server/auth/register
-router.get("/checkHistory/:ID",  checkHistory) // /server/auth/register
+router.get("/getUserInfo/:ID",quoteValidation(quoteSchema),  getUserInfo) // /server/auth/register
+router.get("/checkHistory/:ID", quoteValidation(quoteSchema), checkHistory) // /server/auth/register
 
 export default router

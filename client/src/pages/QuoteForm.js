@@ -66,9 +66,9 @@ const QuoteForm = () => {
             name:"gallonsRequested",
             type:"number",
             //placeholder:"0",
-            //errorMessage:"Invalid name.",
+            errorMessage:"Numbers Only",
             label:"Number of Gallons",
-            //pattern: "^[a-zA-Z_][a-zA-Z_ ]*[a-zA-Z_]{2,50}$",
+            //pattern: "^[0-9]",
             required: true,
         },
         {
