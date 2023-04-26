@@ -4,12 +4,12 @@ const quoteSchema = new mongoose.Schema({
     realPrice: {
         type: Number,
         required: true,
-        min: 50
+        min: 0
     },
     suggPrice: {
         type: Number,
         required: true,
-        min: 2
+        min: 0
     },
     deliveryDate: {
         type:Date,
@@ -19,17 +19,17 @@ const quoteSchema = new mongoose.Schema({
         type: String,
         required: true,
         min: 12,
-        max: 50
+        max: 250
     },
     gallonsRequested: {
         type: Number,
         required: true,
-        min: 100
+        min: 0
     },
     email: {
         type: String,
         required: true,
-        min: 12
+        min: 5
     }
 
 
