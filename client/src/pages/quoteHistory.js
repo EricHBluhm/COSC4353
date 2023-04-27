@@ -25,7 +25,7 @@ export default function QuoteHistory() {
                 <Button variant="contained" onClick={() => { navigate("/Login"); }} endIcon={<ExitToAppIcon />}>
                   Log out
                 </Button>
-                <Button variant="contained"  onClick={() => { navigate("/Register"); }} color="warning" startIcon={<AccountBoxIcon />}>
+                <Button variant="contained"  onClick={() => { navigate("/accInfo"); }} color="warning" startIcon={<AccountBoxIcon />}>
                   Registration Settings
                 </Button>
                 <Button variant="contained"  onClick={() => { navigate("/QuoteForm"); }} color="success" endIcon={<RequestQuoteIcon />}>
