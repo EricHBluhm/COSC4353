@@ -31,17 +31,17 @@ export default function QuoteTable() {
     },
     {
       name : "Delivery Date",
-      selector: (row) => row.deliveryDate,
+      selector: (row) => row.deliveryDate.substring(0,10),
       sortable: true,
     },
     {
       name: "Suggested Price",
-      selector: (row) => row.suggPrice,
+      selector: (row) => '$'+(row.suggPrice).toFixed(2),
       sortable: true,
     },
     {
       name : "Total Amount Due",
-      selector: (row) => row.realPrice,
+      selector: (row) => '$'+(row.realPrice).toFixed(2),
       sortable: true
     },
   ]
@@ -133,13 +133,13 @@ const customStyles = {
     const response = await fetch(URL)
     const users = await response.json()
     setData(users)
-    await delay(100);
+    await delay(750);
     setLoading(false) 
   }
 
    // A super simple expandable component.
 const ExpandedComponent = ({ data }) => 
-<p><center><small>Status =  Your {data.gallonsRequested} gallons delivering to {data.deliveryAddress} have been approved</small></center></p>;
+<p><center><small>Status =  Your {data.gallonsRequested} gallons delivering to {data.address} are ready to be approved.</small></center></p>;
 
 
 // manages deletion of rows
@@ -154,7 +154,7 @@ const ExpandedComponent = ({ data }) =>
   const contextActions = useMemo(() => {
 		const handleDelete = () => {
 			
-			if (window.confirm(`Are you sure you want to delete the following fuel quote/s:\r${selectedRows.map(r => r.ID)}?`)) {
+			if (window.confirm(`Are you sure you want to delete the following fuel quote/s going to these addresses:\r${selectedRows.map(r => r.address)}?`)) {
 				setToggleCleared(!toggleCleared);
 				setData(_.differenceBy(data, selectedRows));
         // deletes selected rows in the original data from the respective user
@@ -164,7 +164,7 @@ const ExpandedComponent = ({ data }) =>
 
     return ( 
       <Stack>
-        <Button variant="contained" onClick={handleDelete} startIcon={<DeleteIcon />}>
+        <Button variant="contained" onClick={handleDelete} startIcon={<DeleteIcon />} color = "secondary">
           Delete
         </Button>
       </Stack>
