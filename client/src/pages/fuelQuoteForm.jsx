@@ -67,7 +67,6 @@ export default function App() {
     setValue("suggPrice", suggestPrice);
 
   }
-
   
 
 
@@ -112,11 +111,11 @@ export default function App() {
 
           <div className = "bottomForm">
             <label>Suggested Rate: </label>
-            <input {...register("suggPrice", {required: 'A valid monetary value is required.'})} placeholder="ex. 65" />
+            <input {...register("suggPrice", {required: 'A valid monetary value is required.'})} readOnly = { true } placeholder="ex. 65" />
             <p>{errors.suggPrice?.message}</p>
   
             <label>Total price: </label>
-            <input {...register("realPrice", {required: 'A valid monetary value is required.'})} placeholder="ex. 65"/>
+            <input {...register("realPrice", {required: 'A valid monetary value is required.'})} readOnly = { true }   placeholder="ex. 65"/>
             <p>{errors.realPrice?.message}</p>
   
             <input type = "submit" />

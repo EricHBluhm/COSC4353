@@ -107,7 +107,7 @@ describe("Get to /quotes/getUserInfo", () =>{
     })
 })
 
-describe("Get to /quotes/getUserInfo", () =>{
+describe("Get to /quotes/checkHistory", () =>{
     describe("On Render", () =>{
 
         beforeAll(async () => {
