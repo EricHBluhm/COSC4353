@@ -1,5 +1,5 @@
 import './fuelQuoteForm.css'
-import { useState, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import axios from 'axios'
@@ -12,9 +12,64 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function App() {
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const { register, handleSubmit, formState: {errors}, getValues, setValue } = useForm();
   const {currentUser} = useContext(AuthContext);
   const navigate = useNavigate()
+
+  const [userVal, setUserVal] = useState({
+    address : "",
+    locationFactor: 0,
+    historyFactor: 0
+  })
+
+  useEffect(()=> {
+    const fetchData = async (e) => {
+      try{
+        const res = await axios.get("/quotes/getUserInfo/" + currentUser.email);
+               
+        let userInfo = res.data;
+        let isTexas = 0.04;
+        let deliveryAdd = userInfo.address1 + ", " + userInfo.address2 + ", " + userInfo.city + ", " + userInfo.states + ", " + userInfo.zipcode
+        if(userInfo.states === "TX")
+          isTexas  = 0.02;
+        
+        const hasHistory = await axios.get("/quotes/checkHistory/" + currentUser.email);
+
+        setUserVal({address:deliveryAdd, locationFactor:isTexas, historyFactor:hasHistory.data})
+      }catch (err){
+        console.log(err)
+      }
+  };
+  fetchData();
+},[]);
+
+
+
+  const PriceModule = (e) => {
+    e.preventDefault();
+
+    let ppGallon = 1.5; //price per gallon
+    let grFactor = 0.03; //gallons requested Factor
+    let profitFactor = 0.1; //company profit factor
+
+    if (getValues("gallonsRequested") >= 1000) //if requested more than 1000 gallons, decrease grFactor
+      grFactor = 0.02;
+
+    console.log("grFactor = " + grFactor)
+    console.log("location factor = " + userVal.locationFactor)
+    console.log("history Factor = " + userVal.historyFactor)
+
+    let margin = ppGallon * (userVal.locationFactor - userVal.historyFactor + grFactor + profitFactor);
+    let suggestPrice = ppGallon + margin
+    let amountDue = getValues("gallonsRequested") * suggestPrice;
+
+    setValue("realPrice", amountDue);
+    setValue("suggPrice", suggestPrice);
+
+  }
+
+  
+
 
   
   return (
@@ -47,11 +102,13 @@ export default function App() {
           <p>{errors.gallonsRequested?.message}</p>
           
           <label>Delivery Address: </label>
-          <input {...register("address", {required: 'A valid address is required.'})} minLength="5" placeholder="ex.  34 wallaby way"/> 
+          <input {...register("address", {required: 'A valid address is required.'})} minLength="5" value={userVal.address}/> 
           <p>{errors.address?.message}</p>
   
           <label>Desired Delivery Date: </label>
           <input {...register("deliveryDate", {required: 'A valid date is required.'})} type="date" minLength="5" placeholder="3/14/53"/>
+          <Button type="button" onClick = {PriceModule}> Get Quote </Button>
+
 
           <div className = "bottomForm">
             <label>Suggested Rate: </label>
@@ -59,7 +116,7 @@ export default function App() {
             <p>{errors.suggPrice?.message}</p>
   
             <label>Total price: </label>
-            <input {...register("realPrice", {required: 'A valid monetary value is required.'})} placeholder="ex. 65" />
+            <input {...register("realPrice", {required: 'A valid monetary value is required.'})} placeholder="ex. 65"/>
             <p>{errors.realPrice?.message}</p>
   
             <input type = "submit" />
