@@ -79,17 +79,17 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: teal;
+  background-color: #618b4a;
 }
 
 .Register form{
-  background-color: white;
+  background-color: #e26d5c;
   padding: 0px 60px;
   border-radius: 10px;
 }
 
 .Register h1{
-  color: rgb(92, 4, 92);
+  color: White;
   text-align: center;
 }
 
@@ -98,7 +98,7 @@
   height:50px;
   padding:10px;
   border:none;
-  background-color: purple;
+  background-color: blue;
   color:white;
   border-radius: 5px;
   font-weight: bold;
