@@ -20,7 +20,7 @@ describe("Post to /quotes/quotform", () =>{
         //should respond with 200, success
         test("should respond with 200", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
-                gallonsRequested: 45,
+                gallonsRequested: 150,
                 address: "123 Wallaby Way",
                 suggPrice: 435,
                 deliveryDate: "03/15/2023",
@@ -31,7 +31,7 @@ describe("Post to /quotes/quotform", () =>{
         })
         test("should specify that it is json content", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
-                gallonsRequested: 45,
+                gallonsRequested: 150,
                 address: "123 Wallaby Way",
                 suggPrice: 435,
                 deliveryDate: "03/15/2023",
@@ -42,14 +42,14 @@ describe("Post to /quotes/quotform", () =>{
         })
         test("response declares quote was saved", async () => {
             const response = await request(app).post("/server/quotes/quoteForm").send({
-                gallonsRequested: 45,
+                gallonsRequested: 150,
                 address: "123 Wallaby Way",
                 suggPrice: 435,
                 deliveryDate: "03/15/2023",
                 realPrice: 100,
                 email: "unittest@test.com"
             })
-            expect(response.body).toBeDefined()
+            expect(response.body.response).toBe('Quote Saved.')
         })
     })
 })

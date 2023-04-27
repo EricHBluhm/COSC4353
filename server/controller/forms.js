@@ -1,4 +1,5 @@
 
+import { string } from 'yup';
 import Quote from '../models/quote.js'
 import User from "../models/User.js";
 import UserInfo from "../models/UserInfo.js"
@@ -11,12 +12,13 @@ export const createForm = async (req, res) =>{
 
         const newQuote = await quote.save(); 
 
-        res.send("Quote Saved.");
+        res.send({ response : 'Quote Saved.' });
 
     }catch(err){
         res.json("Error found.")
     }
 }
+
 
 export const getUserInfo = async (req,res) =>{
     let { ID } = req.params

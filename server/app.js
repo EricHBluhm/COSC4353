@@ -9,7 +9,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true })
+//await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true })
 //const db = mongoose.connection
 //db.on('error', (error) => console.error(error))
 //db.once('open', () => console.log('Connected'))
@@ -28,9 +28,11 @@ app.use('/server/quotes', quoteRoutes)
 
 //main().catch(err => console.log(err));
      
-//async function main() {
-//    await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes');
-//}
+
+async function main() {
+    //await mongoose.connect('mongodb://127.0.0.1:27017/fuelQuotes'); //local server
+    await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority');
+}
 
 
 export default app
