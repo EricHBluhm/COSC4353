@@ -104,12 +104,23 @@ export const accInfo = async (req,res) =>{
             zipcode,
         })
 
-        //update User to have accountInfo
-        await User.findOneAndUpdate({email:email}, {hasAccInfo: "true"}) //updating User Credentials Table
+        
+        //if wanting to edit account info
+        if(foundUser.hasAccInfo == "true")
+        {
+            console.log("hass acc is true")
+            await UserInfo.findOneAndUpdate({email:email}, {fullName:fullName, address1: address1, address2:address2, city:city, states:states,zipcode:zipcode})
+            res.status(201).json(newUserInfo);
+        }
 
-        const savedUserInfo = await newUserInfo.save(); //saving new Client Information entry
+        else{
+                //update User to have accountInfo
+            await User.findOneAndUpdate({email:email}, {hasAccInfo: "true"}) //updating User Credentials Table
 
-        res.status(201).json(savedUserInfo);
+            const savedUserInfo = await newUserInfo.save(); //saving new Client Information entry
+
+            res.status(201).json(savedUserInfo);
+        }
 
     }catch(err){
         res.status(500).json(err);
