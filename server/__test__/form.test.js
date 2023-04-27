@@ -54,7 +54,7 @@ describe("Post to /quotes/quotform", () =>{
     })
 })
 
-    describe("when form data is wrong", () => {
+describe("when form data is wrong", () => {
         
         beforeAll(async () => {
             const mongoServer = await MongoMemoryServer.create()
@@ -80,3 +80,58 @@ describe("Post to /quotes/quotform", () =>{
 
 }) 
 
+describe("Get to /quotes/getUserInfo", () =>{
+    describe("On Render", () =>{
+
+        beforeAll(async () => {
+            const mongoServer = await MongoMemoryServer.create()
+            await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority')
+        });
+    
+        afterAll( async () => {
+            await mongoose.disconnect();
+            await mongoose.connection.close();
+        });
+
+        test("If email exists in mongo, should return 201, user was found", async () => {
+            const response = await request(app).get("/server/quotes/getUserInfo/123@321.com")
+            expect(response.statusCode).toBe(201)
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
+        })
+        test("If email does NOT exist in mongo, should return 501, user was NOT found", async () => {
+            const response = await request(app).get("/server/quotes/getUserInfo/123@789.com")
+            expect(response.statusCode).toBe(501)
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
+        })
+
+    })
+})
+
+describe("Get to /quotes/getUserInfo", () =>{
+    describe("On Render", () =>{
+
+        beforeAll(async () => {
+            const mongoServer = await MongoMemoryServer.create()
+            await mongoose.connect('mongodb+srv://4354Quotes:gA6lACijSKBUtMLN@quotes.u9fu4i3.mongodb.net/?retryWrites=true&w=majority')
+        });
+    
+        afterAll( async () => {
+            await mongoose.disconnect();
+            await mongoose.connection.close();
+        });
+
+        test("If email exists in mongo, should return 201, user was found", async () => {
+            const response = await request(app).get("/server/quotes/checkHistory/123@321.com")
+            expect(response.statusCode).toBe(201)
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
+        })
+
+        test("If email does NOT exist in mongo, should return 501, user was NOT found", async () => {
+            const response = await request(app).get("/server/quotes/checkHistory/123@789.com")
+            expect(response.statusCode).toBe(501)
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
+        })
+
+
+    })
+})
