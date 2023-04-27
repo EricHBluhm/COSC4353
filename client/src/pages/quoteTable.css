@@ -1,5 +1,8 @@
 body {
   margin: 0;
+  padding: 0px;
+  min-height: 100%;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -9,10 +12,27 @@ body {
 
 .main-body{
   background-color: "#EEB902";
+  position: relative;
+  min-height: 100vh;
+}
+
+.wrapper{
+  padding-top: 2.5rem;  
+  padding-bottom: 2.5rem;    /* Footer height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table{
+  width: 1200px;
+  padding: 0px;
+  text-align: center;
+  border: 2px solid #F8F272;
 }
 
 .navigation-bar{
-  background: grey;
+  background:#40531B;
   text-align: right;
   padding: 30px;
   color: white;
@@ -25,5 +45,8 @@ body {
   background:#40531B;
   padding-top: 10px;
   padding-bottom: 15px;
+  position: absolute;
+  bottom: 0;
+  width: 100%; 
 }
 
