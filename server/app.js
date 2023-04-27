@@ -26,7 +26,7 @@ app.use('/server/quotes', quoteRoutes)
 
 
 
-//main().catch(err => console.log(err));
+main().catch(err => console.log(err));
      
 
 async function main() {

@@ -29,7 +29,7 @@ describe('register', () =>{
     it('returns status code 400 if user already found', async () =>{
         const res = await supertest(app).post('/server/auth/register').send({
             _id:userId,
-            email:"test@test.com",
+            email:"unit@test.com",
             password:"Test!1",
             confirmPassword:"Test!1",
             hasAccInfo:true
@@ -42,7 +42,7 @@ describe('register', () =>{
     it('returns status code 201 if new user created', async () =>{
         const res = await supertest(app).post('/server/auth/register').send({
             _id:userId,
-            email:"jest8@test.com",
+            email:"jest22@test.com",
             password:"Test!1",
             confirmPassword:"Test!1",
             hasAccInfo: "false"
@@ -85,8 +85,8 @@ describe('login', () =>{
 
     it('returns status code 200 if token is created and user logged in', async () =>{
         const res = await supertest(app).post('/server/auth/login').send({
-            email:"test2@test.com",
-            password:"TEst!1",
+            email:"unit@test.com",
+            password:"Test!",
         });
         expect(res.statusCode).toEqual(201)
     
@@ -130,7 +130,7 @@ describe('accInfo', () =>{
             city:"Test!1",
             zipcode:"47383",
             states: "TX",
-            email: "jest8@test.com"
+            email: "jest22@test.com"
         });
         expect(res.statusCode).toEqual(201)
     
