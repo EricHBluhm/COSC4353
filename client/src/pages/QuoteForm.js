@@ -30,7 +30,7 @@ const QuoteForm = () => {
                 if(userInfo.states === "TX")
                     isTexas  = 0.02;
                 
-                const hasHistory = await axios.get("/form//checkHistory/" + currentUser.email);
+                const hasHistory = await axios.get("/form/checkHistory/" + currentUser.email);
                
                 setUserVal({address:deliveryAdd, locationFactor:isTexas, historyFactor:hasHistory.data})
                 //setValues(prev=>({...prev, address:userVal.address}))
