@@ -24,7 +24,7 @@ const AccRegistration = () => {
 
     const navigate = useNavigate()
 
-    const inputs = [
+      const inputs = [
         {
             id:1,
             name:"fullName",
@@ -42,7 +42,8 @@ const AccRegistration = () => {
             placeholder:"Address 1",
             errorMessage:"Enter Valid Address",
             label:"Address 1",
-            pattern: "^[a-zA-Z0-9_][a-zA-Z0-9_ ]*[a-zA-Z0-9_]$",
+            //pattern: "^[a-zA-Z0-9_][a-zA-Z0-9_ ]*[a-zA-Z0-9_]$",
+            pattern: "^.{2,100}",
             required: true,
         },
         {
@@ -52,7 +53,7 @@ const AccRegistration = () => {
             placeholder:"Address 2",
             errorMessage:"",
             label:"Address 2",
-            pattern: "^[a-zA-Z0-9]{2,100}$",
+            pattern: "^.{2,100}",
             required: false,
         },
         {
