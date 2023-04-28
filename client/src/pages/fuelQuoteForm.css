@@ -1,5 +1,5 @@
 body {
-  background: #618b4a;
+  background: teal;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -32,15 +32,16 @@ body {
 }
 
 .quoteFormHeader {
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "ultra";
   text-decoration: bolder;
-  display: block;
   box-sizing: border-box;
   font-size : 40pt;
   font-weight: 100;
-  color: white;
+  color: purple;
   padding-bottom: 30px;
-  border-bottom: 4px solid green;
   text-align: center;
 }
 
@@ -53,7 +54,7 @@ body {
 .quoteFormDesc {
   margin-top: -30px;
   margin-bottom: 40px;
-  color: white;
+  color: purple;
   text-decoration: bolder;
   text-align: center;
 }
@@ -81,7 +82,7 @@ body {
   margin-right: auto;
   margin-bottom: 10px;
   margin-top: 20px;
-  color: green;
+  color: grey;
   font-size: 16px;
   font-weight: bold;
 
@@ -128,9 +129,9 @@ body {
 
 .FORMfooter-main{
   font-family: 'Nanum Gothic', sans-serif;
-  border: dashed #F8F272;
+  border: 2px solid orange;
   color: white;
-  background:#40531B;
+  background:purple;
   padding-top: 10px;
   padding-bottom: 15px;
 
@@ -138,7 +139,7 @@ body {
 
 .returnButton {
   position: absolute;
-  top: 10px;
+  top: 65px;
   left: 10px;
 }
 

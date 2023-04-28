@@ -77,7 +77,7 @@ export default function App() {
   
   return (
     <main>
-      <Button className = "returnButton" variant="contained"  onClick={() => { navigate("/QuoteHistory"); }}  endIcon={<HomeIcon />}>
+      <Button className = "returnButton" variant="contained"  onClick={() => { navigate("/QuoteHistory"); }} color='secondary' endIcon={<HomeIcon />}>
           See Quotes History
         </Button>
       <header className = "quoteFormHeader">
@@ -113,7 +113,7 @@ export default function App() {
           <input {...register("address", {required: 'A valid address is required.'})} readOnly = { true } value={userVal.address}/> 
           <p>{errors.address?.message}</p>
   
-          <Button variant='contained' onClick = {PriceModule} endIcon = {<AssignmentTurnedInIcon />}> Get Quote </Button>
+          <Button variant='contained' onClick = {PriceModule} color='secondary' endIcon = {<AssignmentTurnedInIcon />}> Get Quote </Button>
 
 
           <div className = "bottomForm">
@@ -125,7 +125,7 @@ export default function App() {
             <input {...register("realPrice", {required: 'A valid monetary value is required.'})} readOnly = { true }   placeholder="ex. 65"/>
             <p>{errors.realPrice?.message}</p>
   
-            <Button variant='contained' type = 'submit' endIcon={<SendIcon />} > Submit </Button>
+            <Button variant='contained' type = 'submit' color='secondary' endIcon={<SendIcon />} > Submit </Button>
           </div>
         </form>
       </div>
