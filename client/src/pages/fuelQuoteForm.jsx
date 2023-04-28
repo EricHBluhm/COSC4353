@@ -64,6 +64,8 @@ export default function App() {
     let margin = ppGallon * (userVal.locationFactor - userVal.historyFactor + grFactor + profitFactor);
     let suggestPrice = ppGallon + margin
     let amountDue = getValues("gallonsRequested") * suggestPrice;
+    suggestPrice = suggestPrice.toFixed(2);
+    amountDue = amountDue.toFixed(2);
 
     setValue("realPrice", amountDue);
     setValue("suggPrice", suggestPrice);
@@ -108,7 +110,7 @@ export default function App() {
           <p>{errors.deliveryDate?.message}</p>
           
           <label>Delivery Address: </label>
-          <input {...register("address", {required: 'A valid address is required.'})} minLength="5" value={userVal.address}/> 
+          <input {...register("address", {required: 'A valid address is required.'})} readOnly = { true } value={userVal.address}/> 
           <p>{errors.address?.message}</p>
   
           <Button variant='contained' onClick = {PriceModule} endIcon = {<AssignmentTurnedInIcon />}> Get Quote </Button>
