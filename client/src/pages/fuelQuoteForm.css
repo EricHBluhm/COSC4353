@@ -10,17 +10,38 @@ body {
   margin: 0 auto;
 }
 
+.bottomForm {
+  background-color: rgb(121, 133, 105);
+  padding: 25px;
+  border-radius: 10px;
+  width: 700px;
+  margin-left: -125px;
+  margin-right: auto;
+  margin-top: 20px;
+  border: 1px solid white;
+}
+
+.quoteForm {
+  display:flex;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 2px;
+  border-radius: 15px;
+  width: 750px;
+}
+
 .quoteFormHeader {
   font-family: "ultra";
   text-decoration: bolder;
-  text-align: center;
   display: block;
   box-sizing: border-box;
   font-size : 40pt;
   font-weight: 100;
   color: white;
-  padding-bottom: -30px;
-  border-bottom: 1px solid #EEB902;
+  padding-bottom: 30px;
+  border-bottom: 4px solid green;
+  text-align: center;
 }
 
 .quoteForm p {
@@ -28,51 +49,41 @@ body {
   text-align: center;
 }
 
-.form {
-  background: #0e101c;
-  max-width: 400px;
-  margin: 0 auto;
-}
 
 .quoteFormDesc {
   margin-top: -30px;
   margin-bottom: 40px;
-  color: #40531B;
+  color: white;
   text-decoration: bolder;
   text-align: center;
 }
 
-.quoteForm div {
-  text-align: center;
-}
 
 .quoteForm input {
   display: block;
   box-sizing: border-box;
-  width: 65%;
+  width: 100%;
   margin-right: auto;
-  margin-left: auto;
-  border-radius: 2px;
-  border: 1px solid white;
-  padding: 15px 8px;
-  margin-bottom: 20px;
+  margin-left:auto;
   font-size: 14px;
-  text-align: center
+  text-align: left;
+  padding:15px;
+  border-radius:5px;
+  border: 1px solid gray;
 }
 
 
 .quoteForm label {
   line-height: 0;
-  text-align: center;
+  text-align:left;
   font-family: "ultra";
   display: block;
+  margin-right: auto;
   margin-bottom: 10px;
   margin-top: 20px;
-  color: #40531B;
+  color: green;
   font-size: 16px;
-  font-weight: 200;
-  text-decoration: underline;
-  text-decoration: bolder;
+  font-weight: bold;
 
 }
 
@@ -90,41 +101,26 @@ body {
   letter-spacing: 2px;
 }
 
-.quoteForm input[type="submit"]:hover {
-  background: #AEA83D;
-}
-
-.quoteForm  input[type="button"]:active,
-input[type="submit"]:active {
-  transition: 0.3s all;
-  transform: translateY(3px);
-  border: 1px solid transparent;
-  opacity: 0.8;
-}
-
-.quoteForm  input:disabled {
-  opacity: 0.4;
-}
-
-.quoteForm  input[type="button"]:hover {
-  transition: 0.3s all;
-}
-
-
-.quoteForm {
+.quoteForm button {
   display: flex;
-  background-color: #e26d5c;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-radius: 15px;
-  padding-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 10px;
+  width: 80%;
 }
 
-.bottomForm {
-  background-color: #AFBC88;
-  padding : 20px;
-  border-radius: 15px;
+.bottomForm input {
+  text-align: center;
+  width: 60%;
 }
+
+.bottomForm label {
+  text-align: center;
+  color : white;
+}
+
+
+
 
 .sep{
   padding-top: 100px;
@@ -139,3 +135,4 @@ input[type="submit"]:active {
   padding-bottom: 15px;
 
 }
+

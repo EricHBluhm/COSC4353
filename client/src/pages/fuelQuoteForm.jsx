@@ -6,7 +6,9 @@ import axios from 'axios'
 import { AuthContext } from '../context/authContext';
 import "./fuelQuoteForm.css"
 import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
 import SendIcon from '@mui/icons-material/Send';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import { useNavigate } from "react-router-dom";
 
 
@@ -73,11 +75,12 @@ export default function App() {
   
   return (
     <main>
-      <h1 className = "quoteFormHeader">
-        <img src = "https://drive.google.com/thumbnail?id=1STsn8_hZ81Nlf4wNu9BFxc2_pbfSouRI" width={50} height={50} />
-        Fuel Quote Form
-        <img src = "https://drive.google.com/thumbnail?id=1STsn8_hZ81Nlf4wNu9BFxc2_pbfSouRI" width={50} height={50} />
-      </h1>
+      <Button className = "returnButton" variant="contained"  onClick={() => { navigate("/QuoteHistory"); }}  endIcon={<HomeIcon />}>
+          See Quotes History
+        </Button>
+      <header className = "quoteFormHeader">
+        Quote Form
+      </header>
       <p className = "quoteFormDesc">
         Please provide us with a few details to help us get started on your quote
       </p>
@@ -100,13 +103,15 @@ export default function App() {
           <input {...register("gallonsRequested", {required: 'A valid number is required.'})} type="number" placeholder="ex.  1,000" />
           <p>{errors.gallonsRequested?.message}</p>
           
+          <label>Desired Delivery Date: </label>
+          <input {...register("deliveryDate", {required: 'A valid date is required.'})} type="date" minLength="5" placeholder="3/14/53"/>
+          <p>{errors.deliveryDate?.message}</p>
+          
           <label>Delivery Address: </label>
           <input {...register("address", {required: 'A valid address is required.'})} minLength="5" value={userVal.address}/> 
           <p>{errors.address?.message}</p>
   
-          <label>Desired Delivery Date: </label>
-          <input {...register("deliveryDate", {required: 'A valid date is required.'})} type="date" minLength="5" placeholder="3/14/53"/>
-          <Button type="button" onClick = {PriceModule}> Get Quote </Button>
+          <Button variant='contained' onClick = {PriceModule} endIcon = {<AssignmentTurnedInIcon />}> Get Quote </Button>
 
 
           <div className = "bottomForm">
@@ -118,10 +123,7 @@ export default function App() {
             <input {...register("realPrice", {required: 'A valid monetary value is required.'})} readOnly = { true }   placeholder="ex. 65"/>
             <p>{errors.realPrice?.message}</p>
   
-            <input type = "submit" />
-            <Button variant="contained"  onClick={() => { navigate("/QuoteHistory"); }}  endIcon={<SendIcon />}>
-                  See Quotes History
-            </Button>
+            <Button variant='contained' type = 'submit' endIcon={<SendIcon />} > Submit </Button>
           </div>
         </form>
       </div>
