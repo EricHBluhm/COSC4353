@@ -94,6 +94,8 @@ export default function App() {
               values.email = currentUser.email;
 
               const res = await axios.post("/quotes/quoteForm", values);
+              if(res.status == 200)
+                alert("Form Succefully Saved")
               console.log(values);
 
             }catch(err){
@@ -110,7 +112,7 @@ export default function App() {
           <p>{errors.deliveryDate?.message}</p>
           
           <label>Delivery Address: </label>
-          <input {...register("address", {required: 'A valid address is required.'})} readOnly = { true } value={userVal.address}/> 
+          <input {...register("address", {required: 'A valid address is required.'})} readOnly = { true } value= { userVal.address }/> 
           <p>{errors.address?.message}</p>
   
           <Button variant='contained' onClick = {PriceModule} color='secondary' endIcon = {<AssignmentTurnedInIcon />}> Get Quote </Button>
