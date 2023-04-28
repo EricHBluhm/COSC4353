@@ -106,7 +106,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   padding: 10px;
-  width: 80%;
+  width: 50%;
 }
 
 .bottomForm input {
@@ -134,5 +134,11 @@ body {
   padding-top: 10px;
   padding-bottom: 15px;
 
+}
+
+.returnButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
